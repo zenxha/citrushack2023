@@ -13,26 +13,27 @@
             <li class="icon">icon</li>
             <li class="home-btn">home</li>
             <li class="top"><a href="top.html">top</a></li>
-            <div className="Nav-dropdown">
-                <button className="Nav-btn-drop" onClick={toggleDropdown}>
-                    <div className="Nav-btn-icon">
+
+            <div class="Nav-dropdown">
+                <button class="Nav-btn-drop">
+                    <div class="Nav-btn-icon">
                         U
                     </div>
-                    <span className="Nav-span">
+                    <span class="Nav-span">
                     </span>
                 </button>
-                    <div className="Nav-dropdown-container" visibility="hidden">
-                        <ul className="Nav-dropdown-list">
-                            <li className='Nav-list-item'>Profile</li>
-                            <li className='Nav-list-item'>Account</li>
-                            <li className='Nav-list-item'>Dashboard</li>
-                            <Link to='/login' textDecoration="none">
-                                <li className='Nav-list-item'>
-                                    Logout
-                                </li>
-                            </Link>
-                        </ul> 
-                    </div>
+                <div class="Nav-dropdown-container">
+                    <ul class="Nav-dropdown-list">
+                        <li class='Nav-list-item'>Profile</li>
+                        <li class='Nav-list-item'>Account</li>
+                        <li class='Nav-list-item'>Dashboard</li>
+                        <a href="#">
+                            <li class='Nav-list-item'>
+                                Logout
+                            </li>
+                        </a>
+                    </ul> 
+                </div>
             </div>
         </ul>
 
@@ -51,16 +52,11 @@
                     <button type="submit">Upload</button>
                 </div>
         </form>
-        <div class="record-container">
-            <div class="display"></div>
-            <div class="controllers"></div>
-        </div>
             
             
         <button class="play-btn"> Play </button>
             
             
-        <script src="vrecorder.js"></script>
         <script src="front.js"></script>
     </div>
 </body>
