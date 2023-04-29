@@ -2,7 +2,7 @@
 const display = document.querySelector('.display')
 const controllerWrapper = document.querySelector('.controllers')
 
-const State = ['Initial', 'Record', 'Download']
+const State = ['Initial', 'Record', 'Download', 'Upload']
 let stateIndex = 0
 let mediaRecorder, chunks = [], audioURL = ''
 
@@ -54,6 +54,11 @@ const stopRecording = () => {
     application(stateIndex)
 }
 
+const finalize = () =>{
+    stateIndex = 3
+    application(stateIndex)
+}
+
 const downloadAudio = () => {
     const downloadLink = document.createElement('a')
     downloadLink.href = audioURL
@@ -82,13 +87,28 @@ const addAudio = () => {
     display.append(audio)
 }
 
+const addInputLine = () => {
+    const msg = document.createElement('p')
+    msg.textContent = "Audio Title: "
+    let input = document.createElement("input");
+    input.type = "text";
+    input.id = "audiotitle"
+    display.append(msg)
+    display.append(input)
+}
+
+const upload = () => {
+    let name = document.getElementById("audiotitle").value 
+    console.log(name)
+}
+
 const application = (index) => {
     switch (State[index]) {
         case 'Initial':
             clearDisplay()
             clearControls()
 
-            addButton('record', 'record()', 'Start Recording')
+            addButton('record', 'record()', 'Record Audio')
             break;
 
         case 'Record':
@@ -105,8 +125,16 @@ const application = (index) => {
 
             addAudio()
             addButton('record', 'record()', 'Record Again')
+            addButton('finalize', 'finalize()', 'Finalize Upload')
             break
+        case 'Upload':
+            clearControls()
+            clearDisplay()
 
+            addAudio()
+            addInputLine()
+            addButton('upload', 'upload()', 'Upload Audio')
+            break
         default:
             clearControls()
             clearDisplay()
