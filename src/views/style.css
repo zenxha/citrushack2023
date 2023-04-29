@@ -57,7 +57,7 @@ ul li {
 
     list-style: none;
     aspect-ratio: 1/1;
-    width: calc(3vw + 1px);
+    width: 49px;
 }
 
 ul li a {
@@ -84,13 +84,14 @@ ul li a {
     transition: scale 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-
+/* file drag&drop + submit form */
 .form-cover{
-    width: 80%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    flex-direction: column;
 }
 
 .submit-form {
@@ -99,13 +100,52 @@ ul li a {
     font-size: 20px;
     color: var(--text-clr);
     gap: 10px;
-    padding: 30px 100px;
-    border: 10px solid black;
+    padding: 80px 200px;
+    border: 8px dashed var(--btn-text);
 }
 
-.play-btn{
-
+.submit-form.dragover {
+    border-color: var(--btn-text-hover);
 }
+
+.detail-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.input-box{
+    margin: 30px 0;
+    width: 200px;
+}
+
+.title-label{
+    position: absolute;
+    color: var(--btn-text);
+    font-size: 20px;
+    margin-right: 170px;
+    transform: translateY(-150%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.title-input{
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    color: var(--text-clr);
+    height: 50px;
+    border-bottom: 2px solid var(--btn-text);
+}
+
+.title-input:focus ~ .title-label,
+.title-input:valid ~ .title-label {
+  transform: translateY(-300%) scale(0.8); /* shift the label up and scale it down */
+}
+
 
 
 /* upload button */
@@ -128,7 +168,7 @@ input[type="file"] {
     justify-content: center;
     border-radius: 10px;
 
-    min-height: calc(3vw + 1px);
+    min-height: 49px;
 
     cursor: pointer;
 }
@@ -203,7 +243,7 @@ input[type="file"] {
     line-height: 1;
     border-radius: 10px;
     aspect-ratio: 1/1;
-    width: calc(3vw + 1px);
+    width: 49px;
     overflow: hidden;
 
     user-select: none;
