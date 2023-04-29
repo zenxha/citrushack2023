@@ -48,7 +48,9 @@ ul li {
 
 .submit-form {
     
-
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     padding: 30px 100px;
     border: 10px solid black;
 }
