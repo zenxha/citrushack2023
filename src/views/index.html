@@ -12,12 +12,18 @@
         <ul class="nav-bar">
             <li class="icon">icon</li>
             <div class="nav-content">
-                <li class="home-btn">home</li>
-                <li class="top"><a href="top.html">top</a></li>
+                <li class="home-btn">
+                    <ion-icon name="home-outline" size="large"></ion-icon>
+                </li>
+                <li class="top">
+                    <a href="top.html">
+                        <ion-icon name="medal-outline" size="large"></ion-icon>
+                    </a>
+                </li>
                 <div class="Nav-dropdown">
-                    <button class="Nav-btn-drop">
+                    <button class="Nav-btn-drop nav-content">
                         <div class="Nav-btn-icon">
-                            U
+                            <ion-icon name="person-outline" size="large"></ion-icon>
                         </div>
                         <span class="Nav-span">
                         </span>
@@ -29,7 +35,7 @@
                             <li class='Nav-list-item'>Dashboard</li>
                             <a href="#">
                                 <li class='Nav-list-item'>
-                                    Logout
+                                    Login
                                 </li>
                             </a>
                         </ul> 
@@ -60,6 +66,8 @@
             
             
         <script src="front.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </div>
 </body>
 </html>
