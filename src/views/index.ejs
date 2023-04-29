@@ -8,8 +8,42 @@
     <title>Main Page</title>
 </head>
 <body>
-    
     <%- include('partials/nav') %>
+    <div class="container"> 
+        <ul class="nav-bar">
+            <li class="icon">icon</li>
+            <div class="nav-content">
+                <li class="home-btn">
+                    <ion-icon name="home-outline" size="large"></ion-icon>
+                </li>
+                <li class="top">
+                    <a href="top.html">
+                        <ion-icon name="medal-outline" size="large"></ion-icon>
+                    </a>
+                </li>
+                <div class="Nav-dropdown">
+                    <button class="Nav-btn-drop nav-content">
+                        <div class="Nav-btn-icon">
+                            <ion-icon name="person-outline" size="large"></ion-icon>
+                        </div>
+                        <span class="Nav-span">
+                        </span>
+                    </button>
+                    <div class="Nav-dropdown-container">
+                        <ul class="Nav-dropdown-list">
+                            <li class='Nav-list-item'>Profile</li>
+                            <li class='Nav-list-item'>Account</li>
+                            <li class='Nav-list-item'>Dashboard</li>
+                            <a href="#">
+                                <li class='Nav-list-item'>
+                                    Login
+                                </li>
+                            </a>
+                        </ul> 
+                    </div>
+                </div>
+            </div>
+        </ul>
 
         <form class="form-cover" action="/api/upload" method="POST" enctype="multipart/form-data">
             <div class="submit-form">
@@ -72,3 +106,4 @@
     }
 
 </script>
+    
