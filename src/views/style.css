@@ -28,7 +28,7 @@ body{
 .nav-bar{
     display: flex;
     justify-content: space-between;
-    padding: 30px 100px;
+    padding: 50px 100px;
     user-select: none;
     top: 0;
     left: 0;
@@ -44,11 +44,14 @@ ul li {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 }
 
 .submit-form {
     
-
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     padding: 30px 100px;
     border: 10px solid black;
 }
