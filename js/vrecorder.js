@@ -2,9 +2,10 @@
 const display = document.querySelector('.display')
 const controllerWrapper = document.querySelector('.controllers')
 
-const State = ['Initial', 'Record', 'Download', 'Upload']
+const State = ['Initial', 'Record', 'Download', 'Upload', 'Uploaded']
 let stateIndex = 0
 let mediaRecorder, chunks = [], audioURL = ''
+var audioName = ""
 
 // mediaRecorder setup for audio
 if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
@@ -59,6 +60,13 @@ const finalize = () =>{
     application(stateIndex)
 }
 
+const upload = () => {
+    stateIndex = 4
+    audioName = document.getElementById("audiotitle").value 
+    console.log(audioName)
+    application(stateIndex)
+}
+
 const downloadAudio = () => {
     const downloadLink = document.createElement('a')
     downloadLink.href = audioURL
@@ -97,11 +105,6 @@ const addInputLine = () => {
     display.append(input)
 }
 
-const upload = () => {
-    let name = document.getElementById("audiotitle").value 
-    console.log(name)
-}
-
 const application = (index) => {
     switch (State[index]) {
         case 'Initial':
@@ -134,6 +137,11 @@ const application = (index) => {
             addAudio()
             addInputLine()
             addButton('upload', 'upload()', 'Upload Audio')
+            break
+        case 'Uploaded':
+            clearControls()
+            clearDisplay()
+            addMessage("Audio " + audioName + " has been uploaded")
             break
         default:
             clearControls()
