@@ -1,9 +1,12 @@
 @import url('htttps://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
 
 :root{
-    --bg-clr: rgb(255, 255 ,255);
-    --th-dropdown: grey;
+    --bg-clr: #293550;
+    --text-clr: rgb(204, 204, 204);
+
+    --bg-dropdown: rgb(255, 255, 255);
     --th-dropdown-hover: rgb(75, 75, 75);
+    --btn-text: white;
     --profile-icon: #f21f1f;
 }
 
@@ -12,6 +15,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    color: var(--text-clr);
 }
 
 body{
@@ -25,6 +29,7 @@ body{
 .container{
     min-height: 100svh;
     min-width: 100%;
+    background-color: var(--bg-clr);
 }
 
 .nav-bar{
@@ -57,8 +62,6 @@ ul li {
     padding: 30px 100px;
     border: 10px solid black;
 }
-
-
 
 .play-btn{
 
@@ -162,7 +165,7 @@ ul li {
     -ms-user-select: none;
     user-select: none;
 
-    color: var(--bg-overall);
+    color: var(--btn-text);
     background-color: var(--profile-icon);
     /* just to aligh text center */
     text-align: center;
@@ -189,7 +192,7 @@ ul li {
     top: 95px;
     right: 50px;
     
-    background-color: grey;
+    background-color: var(--bg-dropdown);
     color: rgba(255, 255, 255, 0.87);
     border-radius: 4px;
     box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
