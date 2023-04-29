@@ -10,8 +10,8 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/src/views'));
-app.set('view engine', 'html')
-
+app.set('view engine', 'ejs')
+app.set('views', './src/views')
 
 
 app.use('/api', dbRouter);
@@ -73,12 +73,13 @@ const multerConfig = {
     
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/src/views/index.html');
+  // res.sendFile(__dirname + '/src/views/index.html');
+  res.render('index')
   console.log('')
 })
 
 app.get('/top', (req, res) => {
-  res.sendFile(__dirname + '/src/views/top.html')
+  res.render('top')
 })
 
 
