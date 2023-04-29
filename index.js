@@ -3,6 +3,7 @@ const multer = require('multer');
 const ffmpeg = require('fluent-ffmpeg');
 const path = require('path')
 const fs = require('fs')
+const dbRouter = require('./src/db/db')
 
 const app = express();
 // const upload = multer();
@@ -13,7 +14,7 @@ app.set('view engine', 'html')
 
 
 
-
+app.use('/api', dbRouter);
 
 const multerConfig = {
     
@@ -87,15 +88,15 @@ app.get('/top', (req, res) => {
 
 const upload = multer({ storage: storage })
 
-app.post('/api/upload', upload.single('audio'), (req, res) => {
-  const audio = req.file; // File object
-  const textData = req.body.textData; // Text data from form field
-  console.log(textData);
-  console.log('Audio uploaded')
-  console.log(audio);
+// app.post('/api/upload', upload.single('audio'), (req, res) => {
+//   const audio = req.file; // File object
+//   const textData = req.body.textData; // Text data from form field
+//   console.log(textData);
+//   console.log('Audio uploaded')
+//   console.log(audio);
   
-  res.send('File uploaded successfully');
-})
+//   res.send('File uploaded successfully');
+// })
 
 
 
