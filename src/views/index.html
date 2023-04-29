@@ -47,7 +47,12 @@
         <form action="/api/upload" method="POST" enctype="multipart/form-data" class="form-cover">
             <div class="submit-form">
                 drag & drop or...
+                <label for="audio-upload" class="custom-file-upload">
+                    <ion-icon name="cloud-upload-outline" size="large"></ion-icon>
+                </label>
+                <span class="file-name"></span>
                 <input class="fill" 
+                       id="audio-upload"
                        draggable="true" 
                        type="file" 
                        accept="audio/*, " 

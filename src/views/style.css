@@ -96,6 +96,8 @@ ul li a {
 .submit-form {
     display: flex;
     flex-direction: column;
+    font-size: 20px;
+    color: var(--text-clr);
     gap: 10px;
     padding: 30px 100px;
     border: 10px solid black;
@@ -104,6 +106,39 @@ ul li a {
 .play-btn{
 
 }
+
+
+/* upload button */
+input[type="file"] {
+    /* Hide the original file input */
+    display: none;
+}
+
+.custom-file-upload {
+    /* Style the custom "browse" button */
+    background-color: var(--btn-text);
+    color: var(--bg-clr);
+
+    border: none;
+    text-align: center;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+
+    min-height: calc(3vw + 1px);
+
+    cursor: pointer;
+}
+
+.custom-file-upload:hover {
+    /* Style the custom "browse" button on hover */
+    background-color: var(--btn-text-hover);
+    color: var(--btn-text);
+}
+
 
 /* dropdown: */
 .Nav-dropdown{
@@ -157,10 +192,6 @@ ul li a {
     padding: 0px;
 }
 
-/* .Nav-btn-icon > ion-icon {
-    font-size: 40px;
-} */
-
 .Nav-btn-icon{
     display: flex;
     align-items: center;
@@ -203,7 +234,7 @@ ul li a {
     transform-origin: 112px -1.75px 0px;
 
     top: 110px;
-    right: 50px;
+    right: 70px;
     
     background-color: var(--bg-dropdown);
     color: rgba(255, 255, 255, 0.87);
@@ -223,7 +254,6 @@ ul li a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-between; */
     gap: 10px;
 
     background: var(--th-dropdown);
