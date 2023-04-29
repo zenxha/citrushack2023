@@ -76,6 +76,15 @@ app.get('/', (req, res) => {
   console.log('')
 })
 
+app.get('/top', (req, res) => {
+  res.sendFile(__dirname + '/src/views/top.html')
+})
+
+
+
+
+
+
 const upload = multer({ storage: storage })
 
 app.post('/api/upload', upload.single('audio'), (req, res) => {
@@ -87,6 +96,8 @@ app.post('/api/upload', upload.single('audio'), (req, res) => {
   
   res.send('File uploaded successfully');
 })
+
+
 
 
 app.post('/api/filter', upload.single('file'), (req, res) => {
