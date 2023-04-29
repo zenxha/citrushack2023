@@ -1,9 +1,12 @@
 @import url('htttps://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
 
 :root{
-    --bg-clr: rgb(255, 255 ,255);
-    --th-dropdown: grey;
+    --bg-clr: #293550;
+    --text-clr: rgb(204, 204, 204);
+
+    --bg-dropdown: rgb(255, 255, 255);
     --th-dropdown-hover: rgb(75, 75, 75);
+    --btn-text: white;
     --profile-icon: #f21f1f;
 }
 
@@ -12,6 +15,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    color: var(--text-clr);
 }
 
 body{
@@ -25,6 +29,7 @@ body{
 .container{
     min-height: 100svh;
     min-width: 100%;
+    background-color: var(--bg-clr);
 }
 
 .nav-bar{
@@ -57,8 +62,6 @@ ul li {
     padding: 30px 100px;
     border: 10px solid black;
 }
-
-
 
 .play-btn{
 
@@ -162,7 +165,7 @@ ul li {
     -ms-user-select: none;
     user-select: none;
 
-    color: var(--bg-overall);
+    color: var(--btn-text);
     background-color: var(--profile-icon);
     /* just to aligh text center */
     text-align: center;
@@ -178,14 +181,18 @@ ul li {
 }
 
 .Nav-dropdown-container{
+    aspect-ratio: 5/7;
     visibility: hidden;
     opacity: 1;
+
     transform: none;
     transition: opacity 267ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 178ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    top: 60px;
-    right: 0px;
     transform-origin: 112px -1.75px 0px;
-    background-color: grey;
+
+    top: 95px;
+    right: 50px;
+    
+    background-color: var(--bg-dropdown);
     color: rgba(255, 255, 255, 0.87);
     border-radius: 4px;
     box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
@@ -193,7 +200,7 @@ ul li {
     overflow-y: hidden;
     overflow-x: hidden;
     min-width: 80px;
-    min-height: 208px;
+    min-height: 180px;
     max-width: calc(100% - 32px);
     max-height: calc(100% - 32px);
     outline: 0;
@@ -201,14 +208,23 @@ ul li {
 }
 
 .Nav-dropdown-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
     background: var(--th-dropdown);
     list-style: none;
     margin: 0;
     padding: 0;
-    padding-top: 0px;
-    padding-bottom: 0px;
     position: relative;
     padding-top: 8px;
     padding-bottom: 8px;
     outline: 0;
+
+    padding: 30px;
+}
+
+.Nav-dropdown-list a {
+    text-decoration: none;
 }
