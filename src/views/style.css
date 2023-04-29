@@ -28,9 +28,32 @@ body{
 .nav-bar{
     display: flex;
     justify-content: space-between;
+    padding: 30px 100px;
+    user-select: none;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
-.nav-bar
+ul li {
+    list-style: none;
+}
+
+.form-cover{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-form {
+    
+
+    padding: 30px 100px;
+    border: 10px solid black;
+}
+
+
 
 .play-btn{
 

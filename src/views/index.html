@@ -16,11 +16,21 @@
             <li class="page3">page3</li>
         </ul>
 
-        <div class="empty">
-            <div class="fill" draggable="true">
-
+        <div class="form-cover">
+            <div class="submit-form">
+                <div class="fill" draggable="true">
+                    drag & drop
+                </div>
             </div>
+
+            <form action="/api/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="audio">
+                <input type="text" name="textData">
+                <button type="submit">Submit</button>
+              </form>
         </div>
+
+
         <button class="play-btn"> Play </button>
 
 
