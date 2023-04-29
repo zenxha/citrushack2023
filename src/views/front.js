@@ -1,16 +1,17 @@
 //drag and drop
-const submitForm = document.querySelector('html');
+const dragDetactor = document.querySelector('html');
+const submitForm = document.querySelector('.submit-form');
 
-submitForm.addEventListener('dragover', (event) => {
+dragDetactor.addEventListener('dragover', (event) => {
     event.preventDefault();
     submitForm.classList.add('dragover');
 });
   
-submitForm.addEventListener('dragleave', () => {
+dragDetactor.addEventListener('dragleave', () => {
     submitForm.classList.remove('dragover');
 });
   
-submitForm.addEventListener('drop', (event) => {
+dragDetactor.addEventListener('drop', (event) => {
     event.preventDefault();
     submitForm.classList.remove('dragover');
   
