@@ -1,0 +1,17 @@
+@import url('htttps://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
+
+:root{
+    --bg-clr: rgb(255, 255 ,255);
+    
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.play-btn{
+    
+}
