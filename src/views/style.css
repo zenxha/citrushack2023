@@ -55,7 +55,6 @@ ul li {
 }
 
 .submit-form {
-    
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -223,6 +222,13 @@ ul li {
     outline: 0;
 
     padding: 30px;
+}
+
+.nav-content {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
 }
 
 .Nav-dropdown-list a {
