@@ -5,7 +5,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
 
-mongoose.connect('mongodb://localhost/my_database', {
+mongoose.connect('mongodb://localhost/audio', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost/my_database', {
 const postSchema = new mongoose.Schema({
   username: String,
   title: String,
-  audioPath: String,
+  filename: String,
   timestamp: Date,
   upvotes: Number
 });
@@ -48,17 +48,27 @@ router.get('/posts', async (req, res) => {
   }
 });
 
+router.get('/allposts', async (req, res) => {
+    try {
+        const posts = await Post.find();
+        res.json(posts);
+      } catch (err) {
+        res.status(500).json({ message: err.message });
+      }
+})
+
 router.post('/upload', upload.single('audio'), async (req, res) => {
     const audio = req.file; // File object
     const title = req.body.title; // Text data from form field
     console.log(title);
     console.log('Audio uploaded')
     console.log(audio);
+    console.log(audio.filename);
 
   const post = new Post({
     username: req.body.username,
     title: title,
-    audioPath: audio.path,
+    filename: audio.filename,
     timestamp: new Date(),
     upvotes: 0
   });
