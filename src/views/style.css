@@ -12,6 +12,26 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body{
+    min-height: 100%;
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    min-height: 100svh;
+    min-width: 100%;
+}
+
+.nav-bar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-bar
+
 .play-btn{
-    
+
 }
