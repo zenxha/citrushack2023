@@ -49,7 +49,8 @@
                 <div class="detail-box">
 
                     title <input type="text" name="textData">
-                    <button type="submit">Upload</button>
+                    <!-- <button type="submit">Upload</button> We are using fetch instead-->  
+                    <button onclick="submit">Upload</button>
                 </div>
         </form>
             
@@ -61,3 +62,31 @@
     </div>
 </body>
 </html>
+
+<script>
+    
+    const submit = () => {
+        const fileInputs = document.querySelector('input[type="file"]')
+        const textInput = document.querySelector('input[name="textData"]');
+        const audio = fileInputs[0]
+        const formData = new FormData();
+        formData.append('audio', audio);
+        formData.append('title', textInput);
+
+        fetch('/api/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(result => {
+            console.log(result);
+            // do shit
+        })
+        .catch(error => {
+            console.error(error);
+            // handle the error
+        });
+
+    }
+
+</script>
