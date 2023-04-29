@@ -79,7 +79,7 @@ app.get('/', (req, res) => {
 const upload = multer({ storage: storage })
 
 app.post('/api/upload', upload.single('audio'), (req, res) => {
-  const audio = req.audio; // File object
+  const audio = req.file; // File object
   const textData = req.body.textData; // Text data from form field
   console.log(textData);
   console.log('Audio uploaded')
