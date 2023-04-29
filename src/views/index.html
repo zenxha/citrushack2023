@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Main Page</title>
+</head>
+<body>
+    <div class="container"> 
+        <ul class="nav-bar">
+            <li class="icon">icon</li>
+            <div class="nav-content">
+                <li class="home-btn">
+                    <ion-icon name="home-outline" size="large"></ion-icon>
+                </li>
+                <li class="top">
+                    <a href="top.html">
+                        <ion-icon name="medal-outline" size="large"></ion-icon>
+                    </a>
+                </li>
+                <div class="Nav-dropdown">
+                    <button class="Nav-btn-drop nav-content">
+                        <div class="Nav-btn-icon">
+                            <ion-icon name="person-outline" size="large"></ion-icon>
+                        </div>
+                        <span class="Nav-span">
+                        </span>
+                    </button>
+                    <div class="Nav-dropdown-container">
+                        <ul class="Nav-dropdown-list">
+                            <li class='Nav-list-item'>Profile</li>
+                            <li class='Nav-list-item'>Account</li>
+                            <li class='Nav-list-item'>Dashboard</li>
+                            <a href="#">
+                                <li class='Nav-list-item'>
+                                    Login
+                                </li>
+                            </a>
+                        </ul> 
+                    </div>
+                </div>
+            </div>
+        </ul>
+
+        <form class="form-cover" action="/api/upload" method="POST" enctype="multipart/form-data">
+            <div class="submit-form">
+                drag & drop or...
+                <label for="audio-upload" class="custom-file-upload">
+                    <ion-icon name="cloud-upload-outline" size="large"></ion-icon>
+                </label>
+                <span class="file-name"></span>
+                <input class="fill" 
+                       id="audio-upload"
+                       draggable="true" 
+                       type="file" 
+                       accept="audio/*, " 
+                       name="audio">
+            </div>
+                <div class="detail-box">
+                    
+                    <div class="input-box">
+                        <input class="title-input" type="text" name="title" required>
+                        <label class="title-label">title</label>
+                    </div>
+                   
+                    <!-- <button type="submit">Upload</button> We are using fetch instead-->  
+                    <button onclick="submit">Upload</button>
+                </div>
+        </form>
+            
+            
+        <script src="front.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    </div>
+</body>
+</html>
+
+<script>
+    
+    const submit = () => {
+        const fileInputs = document.querySelector('input[type="file"]')
+        const textInput = document.querySelector('input[name="textData"]');
+        const audio = fileInputs[0]
+        const formData = new FormData();
+        formData.append('audio', audio);
+        formData.append('title', textInput);
+
+        fetch('/api/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(result => {
+            console.log(result);
+            // do shit
+        })
+        .catch(error => {
+            console.error(error);
+            // handle the error
+        });
+
+    }
+
+</script>
