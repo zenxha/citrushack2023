@@ -72,7 +72,7 @@ const multerConfig = {
     });
     
 
-app.use('/audio', express.static(path.join(__dirname, 'src/audio-storage')));
+app.use('/audio', express.static(path.join(__dirname, 'src/audio-storage'))); // serve static audio files
 app.get('/', (req, res) => {
   // res.sendFile(__dirname + '/src/views/index.html');
   res.render('index')

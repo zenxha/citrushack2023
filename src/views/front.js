@@ -53,3 +53,28 @@ function dropDown() {
         dropDownMenu.style.visibility = "hidden";
       }
 }
+
+// Handle form submission
+const submit = () => {
+    const fileInputs = document.querySelector('input[type="file"]')
+    const textInput = document.querySelector('input[name="textData"]');
+    const audio = fileInputs[0]
+    const formData = new FormData();
+    formData.append('audio', audio);
+    formData.append('title', textInput);
+
+    fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log(result);
+        // do shit
+    })
+    .catch(error => {
+        console.error(error);
+        // handle the error
+    });
+
+}
