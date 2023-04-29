@@ -40,7 +40,7 @@ customUploadButton.addEventListener("click", function () {
 });
 
 
-//
+//nav dropdown toggling
 const dropDownBtn = document.querySelector(".Nav-btn-drop");
 const dropDownMenu = document.querySelector(".Nav-dropdown-container");
 

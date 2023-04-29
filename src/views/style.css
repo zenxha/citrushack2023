@@ -31,6 +31,7 @@ body{
     min-height: 100svh;
     min-width: 100%;
     background-color: var(--bg-clr);
+    overflow: hidden;
 }
 
 .nav-bar{
