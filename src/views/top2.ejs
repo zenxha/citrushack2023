@@ -18,7 +18,7 @@
                             <audio class="audio" src="<%='audio/'+post.filename%>"></audio>
                             <ion-icon class="icon pause" name="play-outline" size="large"></ion-icon>
                             <div class="upvote-box">
-                                <ion-icon class="tune-list-icon" name="thumbs-up-outline" size="large"></ion-icon>
+                                <ion-icon class="tune-list-icon" id="<%= post._id %>" name="thumbs-up-outline" data-id="<%= post._id %>" size="large"></ion-icon>
                                 <div class="upvote-count"> <%= post.upvotes %> </div>
                             </div>
                         </div>
@@ -35,6 +35,8 @@
         <script>
             const list_icon = document.querySelectorAll('.icon');
             const list_audio = document.querySelectorAll('.audio');
+            const upvote_icons = document.querySelectorAll('.tune-list-icon');
+
             let counter = 0;
 
             list_icon.forEach((icon, index) => {
@@ -52,6 +54,11 @@
                         list_audio[index].pause();
                     }
                 });
+                upvote_icons[index].addEventListener('click', (evt) => {
+                    evt.preventDefault();
+                    console.log(upvote_icons[index].id);
+                    console.log(upvote_icons[index].attributes["data-id"]);
+                })
             });
         </script>
     </div>
