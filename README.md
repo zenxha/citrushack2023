@@ -4,6 +4,6 @@
 ## Teammates:
 
 - Komay Sugiyama
-- Cole Miller
+- Cole Miller (Got banned on github LOL)
 - Scott Barrios
 - William(Dongyeon) Kim
