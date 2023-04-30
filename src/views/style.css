@@ -191,6 +191,47 @@ ul li a {
   transform: translateY(-300%) scale(0.8); /* shift the label up and scale it down */
 }
 
+/* recording buttons styling */
+#record,
+#stop{
+    padding: 25px 25px;
+    border-radius: 100%;
+    outline: 0;
+    border: 3px solid rgb(255, 255, 255);
+
+    font-size: 0px;
+}
+
+#record{
+    background-color: red;
+}
+
+#record:hover,
+#record:focus{
+    background-color: rgb(180, 0, 0);
+}
+
+#stop{
+    background-color: rgb(183, 1, 1);
+    animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0% {
+        background-color: rgb(132, 0, 0);
+    }
+    50% {
+        background-color: red;
+    }
+    100% {
+        background-color: rgb(132, 0, 0);
+    }
+}
+
+#stop:hover,
+#stop:focus{
+    background-color: red;
+}
 
 
 /* file upload button */
