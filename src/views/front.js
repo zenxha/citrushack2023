@@ -11,18 +11,41 @@ dragDetactor.addEventListener('dragleave', () => {
     submitForm.classList.remove('dragover');
 });
   
-dragDetactor.addEventListener('drop', (event) => {
+dragDetactor.addEventListener('drop', async function(event) {
     event.preventDefault();
     submitForm.classList.remove('dragover');
   
     const file = event.dataTransfer.files[0];
     handleFileUpload(file);
+
+    const reader = new FileReader();
+    await reader.readAsDataURL(file);
+    reader.onload = (event) => {
+        const audioUrl = URL.createObjectURL(file);
+        console.log(audioUrl)
+    };
 });
   
 function handleFileUpload(file) {
     const fileNameElement = document.querySelector('.file-name');
     fileNameElement.textContent = file.name;
 }
+
+//accessing to audio file that is locally uploaded
+// const audioPlayer = document.getElementById('audio-player');
+
+// submitForm.addEventListener('change', () => {
+//   const file = submitForm.files[0];
+  
+//   const reader = new FileReader();
+//   reader.readAsDataURL(file);
+//   reader.onload = (event) => {
+//     const audioUrl = URL.createObjectURL(event.target.result);
+//     //audioPlayer.src = audioUrl;
+//   };
+
+//   console.log(audioUrl);
+// });
 
 
 //file upload by button
