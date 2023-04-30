@@ -11,6 +11,7 @@
         <%- include('partials/nav') %>
         <div class="cards-cover">
         <% posts.forEach((post, index) => { %>
+            <a href="../tune/<%=post._id%>"
             <div class="audio-card">
                 <h1><%= post.title %></h1>
                 <p>Posted by <%= post.username %> on <%= post.timestamp %></p>
@@ -19,6 +20,7 @@
                     <p class="card-upvote-text"><%= post.upvotes %> upvotes</p>
                 </div>
             </div>
+            </a>
         <% }) %>
          </div>
 

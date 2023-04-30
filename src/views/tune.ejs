@@ -2,41 +2,21 @@
 <html lang="en">
 <head>
     <%- include('partials/head') %>
-    <title>Tune</title>
+    <title><%=post.title%></title>
 </head>
 <body>
      
     <div class="container"> 
         <%- include('partials/nav') %>
-        <div class="form-cover">
-            <form action="/api/upload" method="POST" enctype="multipart/form-data">
-                <div class="submit-form">
-                    drag & drop or...
-                    <label for="audio-upload" class="custom-file-upload" tabindex="1">
-                        <ion-icon name="cloud-upload-outline" size="large"></ion-icon>
-                    </label>
-                    <span class="file-name"></span>
-                </div>
-                
-                <%- include('partials/audioPlayer', {filename: ''}) %>
-
-                <div class="detail-box">
-                    
-                    <div class="input-box">
-                        <input class="title-input" type="text" name="title" required>
-                        <label class="title-label">title</label>
-                    </div>
-                    <input class="file-upload-input" 
-                    id="audio-upload"
-                    draggable="true" 
-                    type="file" 
-                    accept="audio/*, " 
-                    name="audio">
-                    
-                    <!-- <button type="submit">Upload</button> We are using fetch instead-->  
-                    <button class="upload-btn" type="submit">Upload</button>
-                </div>
-            </form>
+        <div class="bouncy-box-cover">
+            <div class="bouncy-box">
+                <p class="title-label"><%=post.title%></p>
+                <audio src="../audio/<%=post.filename%>"></audio>
+                <a href="../audio/<%=post.filename%>" download="<%=post.originalname%>" >Download</a>
+                <p id="upvotes-count"><%= post.upvotes %> upvotes</p>
+                <button class="upload-btn" onclick="upvote()">Upvote</button>
+            </div>
+            </div>
         </div>
             
             
@@ -45,6 +25,28 @@
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </div>
 </body>
+
+<script>
+    const upvote = (() => {
+    console.log("sending upvote")
+      const postId = "<%= post._id %>";
+      console.log(postId);
+      fetch(`/api/posts/upvote`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "postId": postId
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          const upvotes = data.upvotes;
+          const upvoteEl = document.querySelector("#upvotes-count");
+          upvoteEl.textContent = `${upvotes} upvotes`;
+        })
+        .catch(error => console.error(error));
+    });
+  </script>
 </html>
 
     
