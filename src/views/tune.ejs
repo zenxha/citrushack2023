@@ -10,21 +10,29 @@
      
     <div class="container"> 
         <%- include('partials/nav') %>
-        <div class="bouncy-box-cover">
-            <div class="bouncy-box">
-                <h2 class="title-label"><%=post.title%></h2>
-
-                <!-- <audio src="../audio/<%=post.filename%>"></audio> -->
-                <%- include('partials/audioPlayer', {filename: post.filename}) %>
-                <a href="../audio/<%=post.filename%>" download="<%=post.originalname%>" >Download</a>
-                <div class="copy-link">
-                    <input type="text" class="copy-link-input" value="localhost:3000/audio/<%=post.filename%>" readonly>
-                    <button type="button" class="copy-link-button">
-                      <span class="material-icons">content_copy</span>
-                    </button>
+        <div class="small-bouncy-box-cover">
+            <div class="small-bouncy-box">
+                <h2 class="title-label"><%=post.title%></h2>                                                                
+                <div class="content-conver">
+                    <audio src="../audio/<%=post.filename%>"></audio>
+                    <div class="btn-cover">
+                      <button id="state-icon" tabindex="1" type="button">
+                          <ion-icon class="icon pause" name="play-outline" size="large"></ion-icon>
+                      </button>
+                      <a class="download-btn" href="../audio/<%=post.filename%>" download="<%=post.originalname%>" tabindex="2">Download</a>
+                    </div>
+                    <div class="copy-link" tabindex="1">
+                        <input type="text" class="copy-link-input" value="localhost:3000/audio/<%=post.filename%>" readonly>
+                        <button type="button" class="copy-link-button" tabindex="1">
+                          <span class="material-icons">content_copy</span>
+                        </button>
+                      </div>
+                      <div class="upvote-cover">
+                        <button class="upVote-btn" onclick="upvote()"><ion-icon name="thumbs-up-outline" size="large"></ion-icon></button>
+                        <p id="upvotes-count"><%= post.upvotes %> upvotes</p>
+                      </div>
                   </div>
-                <p id="upvotes-count"><%= post.upvotes %> upvotes</p>
-                <button class="upload-btn" onclick="upvote()">Upvote</button>
+                </div>
             </div>
             </div>
         </div>
@@ -37,11 +45,137 @@
 </body>
 
 <style>
-    .copy-link {
+
+.small-bouncy-box-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.small-bouncy-box{
+    min-height: 60vh;
+    min-height: 60svh;
+    width: 35vw;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, 0.3);
+    background-color: var(--bouncy-clr);
+    animation: bounce 2.5s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+.copy-link {
   --height: 36px;
 
   display: flex;
   max-width: 250px;
+}
+
+.content-conver{
+  min-height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  position: absolute;
+  top: 20%;
+  left: 0;
+
+  font-size: 30px;
+}
+
+.btn-cover{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+}
+
+#state-icon{
+  background-color: #fff;
+  border: none;
+  border-radius: 20px;
+
+  aspect-ratio: 1/1;
+  min-width: 49px;
+}
+
+.download-btn {
+  text-decoration: none;
+  color: #333333;
+  font-size: 20px;
+
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 20px;
+  min-height: 49px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #fff;
+}
+
+.upvote-cover{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+}
+
+.upVote-btn {
+  background-color: #fff;
+  border: none;
+  border-radius: 20px;
+  
+  aspect-ratio: 1/1;
+  min-width: 49px;
+}
+
+.upVote-btn:hover,
+.upVote-btn:focus,
+#state-icon:hover,
+#state-icon:focus,
+.download-btn:hover,
+.download-btn:focus {
+  background-color: rgb(142, 142, 142);
+  color: #fff;
+}
+
+
+#upvotes-count {
+  font-size: 25px;
+  color: #fff;
 }
 
 .copy-link-input {
