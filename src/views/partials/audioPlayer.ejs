@@ -1,15 +1,23 @@
 <div id="audio-player-container">
     <!-- swaps with pause icon 'pause-outline / play-outline' -->
-    <div id="state-icon">
+    <button id="state-icon" tabindex="2">
         <ion-icon class="icon pause" name="play-outline" size="large"></ion-icon>
-    </div>
+    </button>
 </div>
 
 <script>
     const icon = document.querySelector('.icon');
     let state = 'play';
 
-    icon.addEventListener('click', () => {
+    window.addEventListener('keydown', (evt) => {
+        if (evt.key === ' ') {
+            evt.preventDefault();
+            swtichPlayState();
+        }
+    });
+    icon.addEventListener('click', swtichPlayState);
+
+    function swtichPlayState() {
         if(icon.classList.contains("pause")) {
             icon.classList.remove("pause");
             icon.setAttribute('name', 'pause-outline');
@@ -22,5 +30,5 @@
             icon.classList.add("pause");
             audio.pause();
         }
-    });
+    }
 </script>

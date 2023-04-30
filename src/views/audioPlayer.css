@@ -10,17 +10,6 @@
     align-items: center;
 }
 
-#audio-player-container::before {
-    position: absolute;
-    content: '';
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    left: -2px;
-    top: -2px;
-    background: linear-gradient(to left, #007db5, #ff8a00);
-    z-index: -1;
-}
-
 #state-icon {
     position: absolute;
     left: 10px;
@@ -28,6 +17,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    border: none;
+    background-color: inherit;
 }
 
 #state-icon:hover > .icon{
