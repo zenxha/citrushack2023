@@ -1,0 +1,45 @@
+#audio-player-container {
+    position: relative;
+    margin: 100px 5% auto 5%;
+    width: 90%;
+    max-width: 500px;
+    height: 80px;
+    background: #fff;
+}
+
+#audio-player-container::before {
+    position: absolute;
+    content: '';
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    left: -2px;
+    top: -2px;
+    background: linear-gradient(to left, #007db5, #ff8a00);
+    z-index: -1;
+}
+
+p {
+    position: absolute;
+    top: -18px;
+    right: 5%;
+    padding: 0 5px;
+    margin: 0;
+    font-size: 28px;
+    background: #fff;
+}
+
+#play-icon {
+    margin: 20px 2.5% 20px 2.5%;
+
+    padding: 0;
+    border: 0;
+    background: inherit;
+    cursor: pointer;
+    outline: none;
+    width: 40px;
+    height: 40px;
+}
+
+path {
+    stroke: #007db5;
+}

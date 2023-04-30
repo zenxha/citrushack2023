@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <%- include('partials/head') %>
     <title>Main Page</title>
 </head>
 <body>
     
     <div class="container"> 
         <%- include('partials/nav') %>
-        <form class="form-cover" action="/api/upload" method="POST" enctype="multipart/form-data">
+        <div class="form-cover">
             <div class="submit-form">
                 drag & drop or...
                 <label for="audio-upload" class="custom-file-upload">
@@ -19,23 +16,28 @@
                 </label>
                 <span class="file-name"></span>
                 <input class="fill" 
-                       id="audio-upload"
-                       draggable="true" 
-                       type="file" 
-                       accept="audio/*, " 
-                       name="audio">
+                id="audio-upload"
+                draggable="true" 
+                type="file" 
+                accept="audio/*, " 
+                name="audio">
             </div>
+
+            <%- include('partials/audioPlayer') %>
+
+            <form action="/api/upload" method="POST" enctype="multipart/form-data">
                 <div class="detail-box">
                     
                     <div class="input-box">
                         <input class="title-input" type="text" name="title" required>
                         <label class="title-label">title</label>
                     </div>
-                   
+                    
                     <!-- <button type="submit">Upload</button> We are using fetch instead-->  
                     <button class="upload-btn" onclick="submit">Upload</button>
                 </div>
-        </form>
+            </form>
+        </div>
             
             
         <script src="front.js"></script>
