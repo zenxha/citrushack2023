@@ -1,4 +1,4 @@
-<audio id="audio" src="path/to/audio/file.mp3"></audio>
+<audio id="audio" src="#">au</audio>
 <div id="audio-player-container">
     <!-- swaps with pause icon 'pause-outline / play-outline' -->
     <div id="state-icon">
@@ -15,11 +15,13 @@
             icon.classList.remove("pause");
             icon.setAttribute('name', 'pause-outline');
             icon.classList.add("play");
+            audio.play();
 
         } else {
             icon.classList.remove("play");
             icon.setAttribute('name', 'play-outline');
             icon.classList.add("pause");
+            audio.pause();
         }
     });
 </script>

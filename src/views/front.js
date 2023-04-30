@@ -27,6 +27,7 @@ dragDetactor.addEventListener('drop', async function(event) {
         const audioUrl = URL.createObjectURL(file);
         audioPlayer.src = audioUrl;
         // console.log(audioUrl)
+        console.log(audioPlayer.src);
     };
 });
 
