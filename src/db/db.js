@@ -39,9 +39,11 @@ const storage = multer.diskStorage({
   });
   const upload = multer({ storage: storage })
 
-router.get('/posts', async (req, res) => {
+router.get('/postsordered', async (req, res) => {
   try {
     const posts = await Post.find();
+    console.log(posts)
+    posts.sort((a, b) => b.upvotes - a.upvotes)
     res.json(posts);
   } catch (err) {
     res.status(500).json({ message: err.message });
