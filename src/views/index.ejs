@@ -29,20 +29,23 @@
                         <!-- display, title, and upload button -->
                         <div class="detail-box">
                             <%- include('partials/audioPlayer', {filename: ''}) %>
-                            
-                            <div class="input-box">
-                                <input class="title-input" type="text" name="title" required>
-                                <label class="title-label">title</label>
-                            </div>
+
                             <input class="file-upload-input" 
                             id="audio-upload"
                             draggable="true" 
                             type="file" 
                             accept="audio/*, " 
                             name="audio">
-                            
-                            <!-- <button type="submit">Upload</button> We are using fetch instead-->  
-                            <button class="upload-btn" type="submit">Upload</button>
+                            <div class="small-detail-box">
+                                <div class="input-box">
+                                    <input class="title-input" type="text" name="title" required>
+                                    <label class="title-label">Title</label>
+                                </div>
+                                
+                                
+                                <!-- <button type="submit">Upload</button> We are using fetch instead-->  
+                                <button class="upload-btn" type="submit">Upload</button>
+                            </div>
                         </div>
                     </form>
                 </div>

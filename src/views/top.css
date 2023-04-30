@@ -1,3 +1,17 @@
+.cards-cover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    min-height: 100svh;
+    min-height: 100vh;
+    gap: 20px;
+}
+
+
+
+
 .audio-card {
     display: flex;
     align-items: center;
@@ -18,19 +32,10 @@
 .card-text {
     color: #374151;
 }
-
+ 
 .card-upvote {
     margin-right: 0.5rem;
 }
-
-.cards-cover{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-}
-
 
 
 

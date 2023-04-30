@@ -181,7 +181,7 @@ ul li a {
     border: none;
     outline: none;
     font-size: 20px;
-    color: var(--text-clr);
+    color: var(--btn-text);
     height: 50px;
     border-bottom: 2px solid var(--btn-text);
 }
@@ -273,7 +273,7 @@ input[type="file"] {
 
     background-color: var(--btn-text);
     aspect-ratio: 2/1;
-    min-height: 50px;
+    min-width: 100px;
 
     border-radius: 10px;
     cursor: pointer;
@@ -286,6 +286,13 @@ input[type="file"] {
 .upload-btn:focus {
     color: var(--btn-text);
     background-color: var(--btn-text-hover);
+}
+
+.small-detail-box{
+    min-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* dropdown: */

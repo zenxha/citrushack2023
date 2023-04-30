@@ -6,22 +6,35 @@
     <link rel="stylesheet" href="top.css">
 </head>
 <body>
-    
+    <!-- 
+        <a href="../tune/%=post._id%"
+            <div class="audio-card">
+                <h1>%= post.title %</h1>
+                <p>Posted by %= post.username % on %= post.timestamp %</p>
+                <div>
+                    <ion-icon class="card-upvote" name="thumbs-up-outline"></ion-icon>
+                    <p class="card-upvote-text">%= post.upvotes % upvotes</p>
+                </div>
+            </div>
+        </a>
+     -->
+
+     <!-- 
+        <div class="audio-card">
+                    <h1>%= post.title %>/h1>
+                </div> 
+      -->
     <div class="container"> 
         <%- include('partials/nav') %>
         <div class="cards-cover">
-        <% posts.forEach((post, index) => { %>
-            <a href="../tune/<%=post._id%>"
-            <div class="audio-card">
-                <h1><%= post.title %></h1>
-                <p>Posted by <%= post.username %> on <%= post.timestamp %></p>
-                <div>
-                    <ion-icon class="card-upvote" name="thumbs-up-outline"></ion-icon>
-                    <p class="card-upvote-text"><%= post.upvotes %> upvotes</p>
-                </div>
-            </div>
-            </a>
-        <% }) %>
+        <ul>
+            <% posts.forEach((post, index) => { %>
+                <li>
+                    <a href="../tune/<%=post._id%>"><%= post.title %></a>
+                    <ion-icon name="thumbs-up-outline"></ion-icon>
+                </li>
+            <% }) %>
+        </ul>
          </div>
 
 
