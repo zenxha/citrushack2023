@@ -4,10 +4,13 @@
     width: 90%;
     max-width: 500px;
     height: 80px;
+    border-radius: 20px;
     background: #fff;
 
     display: flex;
     align-items: center;
+    justify-content: center;
+    vertical-align: middle;
 }
 
 #state-icon {
@@ -41,4 +44,17 @@ p {
 
 path {
     stroke: #007db5;
+}
+
+#waveform {
+    position: absolute;
+    right: 5%;
+    min-width: 80%;
+    height: 80px;
+
+    /* display: inline; */
+}
+
+wave{
+    height: 80px !important;
 }
