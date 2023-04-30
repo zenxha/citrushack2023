@@ -3,6 +3,8 @@
 <head>
     <%- include('partials/head') %>
     <title><%='title: ' + post.title%></title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body>
      
@@ -15,6 +17,12 @@
                 <!-- <audio src="../audio/<%=post.filename%>"></audio> -->
                 <%- include('partials/audioPlayer', {filename: post.filename}) %>
                 <a href="../audio/<%=post.filename%>" download="<%=post.originalname%>" >Download</a>
+                <div class="copy-link">
+                    <input type="text" class="copy-link-input" value="localhost:3000/audio/<%=post.filename%>" readonly>
+                    <button type="button" class="copy-link-button">
+                      <span class="material-icons">content_copy</span>
+                    </button>
+                  </div>
                 <p id="upvotes-count"><%= post.upvotes %> upvotes</p>
                 <button class="upload-btn" onclick="upvote()">Upvote</button>
             </div>
@@ -27,6 +35,47 @@
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </div>
 </body>
+
+<style>
+    .copy-link {
+  --height: 36px;
+
+  display: flex;
+  max-width: 250px;
+}
+
+.copy-link-input {
+  flex-grow: 1;
+  padding: 0 8px;
+  font-size: 14px;
+  border: 1px solid #cccccc;
+  border-right: none;
+  outline: none;
+}
+
+.copy-link-input:hover {
+  background: #eeeeee;
+}
+
+.copy-link-button {
+  flex-shrink: 0;
+  width: var(--height);
+  height: var(--height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dddddd;
+  color: #333333;
+  outline: none;
+  border: 1px solid #cccccc;
+  cursor: pointer;
+}
+
+.copy-link-button:hover {
+  background: #cccccc;
+}
+
+</style>
 
 <script>
     const upvote = (() => {
@@ -48,6 +97,25 @@
         })
         .catch(error => console.error(error));
     });
+
+
+
+    document.querySelectorAll(".copy-link").forEach((copyLinkParent) => {
+  const inputField = copyLinkParent.querySelector(".copy-link-input");
+  const copyButton = copyLinkParent.querySelector(".copy-link-button");
+  const text = inputField.value;
+
+  inputField.addEventListener("focus", () => inputField.select());
+
+  copyButton.addEventListener("click", () => {
+    inputField.select();
+    navigator.clipboard.writeText(text);
+
+    inputField.value = "Copied!";
+    setTimeout(() => (inputField.value = text), 2000);
+  });
+});
+
   </script>
 </html>
 

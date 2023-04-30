@@ -97,6 +97,7 @@ app.get('/', (req, res) => {
 app.get('/top', async (req, res) => {
   try {
     const posts = await Post.find();
+    posts.sort((a, b) => b.upvotes - a.upvotes)
     res.render('top2', {posts})
   } catch(e) {
     res.status(500).json({message: err.message})
