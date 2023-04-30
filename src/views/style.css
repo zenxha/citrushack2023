@@ -61,6 +61,11 @@ ul li {
     width: 49px;
 }
 
+/* FIXME:FIXME */
+.home-btn a {
+    color: black;
+}
+
 ul li a {
     display: flex;
     align-items: center;
@@ -149,7 +154,7 @@ ul li a {
 
 
 
-/* upload button */
+/* file upload button */
 input[type="file"] {
     /* Hide the original file input */
     display: none;
@@ -180,6 +185,27 @@ input[type="file"] {
     color: var(--btn-text);
 }
 
+/* upload to server */
+.upload-btn{
+    font-size: 20px;
+    color: var(--bg-clr);
+
+    background-color: var(--btn-text);
+    aspect-ratio: 2/1;
+    min-height: 50px;
+
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+    
+}
+
+.upload-btn:hover, 
+.upload-btn:focus {
+    color: var(--btn-text);
+    background-color: var(--btn-text-hover);
+}
 
 /* dropdown: */
 .Nav-dropdown{

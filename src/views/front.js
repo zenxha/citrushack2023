@@ -19,10 +19,10 @@ dragDetactor.addEventListener('drop', (event) => {
     handleFileUpload(file);
 });
   
-function handleFileUpload(file) {
-    const fileNameElement = document.querySelector('.file-name');
-    fileNameElement.textContent = file.name;
-}
+// function handleFileUpload(file) {
+//     const fileNameElement = document.querySelector('.file-name');
+//     fileNameElement.textContent = file.name;
+// }
 
 
 //file upload by button
