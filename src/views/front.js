@@ -3,8 +3,38 @@ const dragDetactor = document.querySelector('html');
 const submitForm = document.querySelector('.submit-form');
 const fileUploadInput = document.querySelector('.file-upload-input');
 const audioPlayer = document.getElementById('audio');
+const fileNameElement = document.querySelector('.file-name');
+// wave surfer setup
+const wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: 'rgb(173, 173, 173)',
+    progressColor: 'rgb(110, 110, 110)',
+});
+wavesurfer.on('ready', function() {
+    // seek to a specific point when the user clicks on the soundwave
+    wavesurfer.drawer.container.addEventListener('click', function(e) {
+        const relativeX = e.offsetX / this.clientWidth;
+        if (wavesurfer.isReady) {
+          audio.pause();
+          wavesurfer.seekTo(relativeX);
+          audio.play();
+        } else {
+          wavesurfer.once('ready', function() {
+            wavesurfer.seekTo(relativeX);
+          });
+        }
+    });
+});
 
+//const max file size
 const MAXSIZE = 64000000
+
+//set the eventlistener for the end of audio file
+audio.addEventListener('ended', function() {
+    icon.classList.remove("play");
+    icon.setAttribute('name', 'play-outline');
+    icon.classList.add("pause");
+});
 
 dragDetactor.addEventListener('dragover', (event) => {
     event.preventDefault();
@@ -27,6 +57,7 @@ dragDetactor.addEventListener('drop', async function(event) {
     icon.setAttribute('name', 'play-outline');
     icon.classList.add("pause");
     audio.pause();
+    wavesurfer.pause();
 
     console.log(file.size + " : " + MAXSIZE)
     if (file.size > MAXSIZE) {
@@ -41,6 +72,11 @@ dragDetactor.addEventListener('drop', async function(event) {
     reader.onload = (event) => {
         const audioUrl = URL.createObjectURL(file);
         audioPlayer.src = audioUrl;
+        //set the soundwave buffer
+        wavesurfer.load(audioUrl);
+        wavesurfer.on('ready', function() {
+            wavesurfer.drawBuffer();
+        });
     };
 
 });
@@ -54,6 +90,7 @@ fileUploadInput.addEventListener('change', async function(event) {
     icon.setAttribute('name', 'play-outline');
     icon.classList.add("pause");
     audio.pause();
+    wavesurfer.pause();
 
     console.log(file.size + " : " + MAXSIZE)
     if (file.size > MAXSIZE) {
@@ -61,18 +98,21 @@ fileUploadInput.addEventListener('change', async function(event) {
         this.value = null; // clear the file input
         return;
     }
-
     //gets the playable address of a local file been uploaded
     const reader = new FileReader();
     await reader.readAsDataURL(file);
     reader.onload = (event) => {
         const audioUrl = URL.createObjectURL(file);
         audioPlayer.src = audioUrl;
+        //set the soundwave buffer
+        wavesurfer.load(audioUrl);
+        wavesurfer.on('ready', function() {
+            wavesurfer.drawBuffer();
+        });
     };
 });
   
 function handleFileUpload(file) {
-    const fileNameElement = document.querySelector('.file-name');
     fileNameElement.textContent = file.name;
 }
 
@@ -90,6 +130,7 @@ fileInput.addEventListener("change", function (event) {
     icon.setAttribute('name', 'play-outline');
     icon.classList.add("pause");
     audio.pause();
+    wavesurfer.pause();
 
     console.log(file.size + " : " + MAXSIZE)
     if (file.size > MAXSIZE) {
@@ -154,6 +195,7 @@ const controllerWrapper = document.querySelector('.controllers')
 const State = ['Initial', 'Record', 'Download']
 let stateIndex = 0
 let mediaRecorder, chunks = [], audioURL = '', newFile
+let onRecord = false;
 
 // mediaRecorder setup for audio
 if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
@@ -182,8 +224,12 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
             chunks = []
             audioURL = window.URL.createObjectURL(blob)
             audioPlayer.src = audioURL
+            //set up wave buffer
+            wavesurfer.load(audioPlayer.src);
+            wavesurfer.on('ready', function() {
+                wavesurfer.drawBuffer();
+            });
 
-            const fileNameElement = document.querySelector('.file-name');
             fileNameElement.textContent = newFile.name;
           };
     }).catch(error => {
@@ -241,6 +287,7 @@ async function setAudio() {
     icon.setAttribute('name', 'play-outline');
     icon.classList.add("pause");
     audio.pause();
+    wavesurfer.pause();
 }
 
 const application = (index) => {
@@ -256,7 +303,8 @@ const application = (index) => {
             clearDisplay()
             clearControls()
 
-            // addMessage('Recording...')
+            addMessage('Recording...')
+
             addButton('stop', 'stopRecording()', 'Stop Recording')
             break
 

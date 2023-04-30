@@ -4,6 +4,7 @@
     <button id="state-icon" tabindex="2" type="button">
         <ion-icon class="icon pause" name="play-outline" size="large"></ion-icon>
     </button>
+    <div id="waveform"></div>
 </div>
 
 <script>
@@ -23,6 +24,7 @@
         }
     });
 
+
     icon.addEventListener('click', swtichPlayState);
 
     function swtichPlayState() {
@@ -31,12 +33,13 @@
             icon.setAttribute('name', 'pause-outline');
             icon.classList.add("play");
             audio.play();
-
+            wavesurfer.play();
         } else {
             icon.classList.remove("play");
             icon.setAttribute('name', 'play-outline');
             icon.classList.add("pause");
             audio.pause();
+            wavesurfer.pause();
         }
     }
 
