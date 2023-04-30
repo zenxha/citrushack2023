@@ -9,17 +9,18 @@
     
     <div class="container"> 
         <%- include('partials/nav') %>
-
+        <div>
         <% posts.forEach(post => { %>
-            <div class="music_card">
+            <div class="audio-card">
                 <audio src="<%= '/audio/'+post.filename %>"></audio>
-              <h2><%= post.title %></h2>
-              <p>Posted by <%= post.username %> on <%= post.timestamp %></p>
-              <p><%= post.upvotes %> upvotes</p>
+              <p class="card-title"><%= post.title %></p>
+              <p class="card-text">Posted by <%= post.username %> on <%= post.timestamp %></p>
+              <ion-icon class="card-upvote" name="thumbs-up-outline"></ion-icon>
+              <p class="card-upvote-text"><%= post.upvotes %> upvotes</p>
               
             </div>
         <% }) %>
-            <!-- <%- include('partials/audioPlayer') %> -->
+         </div>
 
 
             
