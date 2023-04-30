@@ -1,6 +1,8 @@
 :root{
     --content-clr: #fff;
     --card-bg: rgb(143, 190, 175);
+
+    --bouncy-clr: rgb(254, 190, 137);
 }
 
 .cards-cover{
@@ -9,7 +11,7 @@
     align-items: center;
     flex-direction: column;
 
-    margin-top: 30px;
+    margin-top: 20px;
 
     min-height: 100svh;
     min-height: 100vh;

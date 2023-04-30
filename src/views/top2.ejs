@@ -9,24 +9,24 @@
     <div class="container"> 
         <%- include('partials/nav') %>
         <div class="cards-cover">
-        <ul class="tune-list">
-            <% posts.forEach((post, index) => { %>
-                <a class="tune-link" href="../tune/<%=post._id%>">
-                    <li class="tune-list-item">
-                        <div class="tune-list-title"><%= index+1 + '. ' %> <%= post.title %></div>
-                        <div class="list-funciton-box">
-                            <audio class="audio" src="<%='audio/'+post.filename%>"></audio>
-                            <ion-icon class="icon pause" name="play-outline" size="large"></ion-icon>
-                            <div class="upvote-box">
-                                <ion-icon class="tune-list-icon"  name="thumbs-up-outline" data-id="<%= post._id%>" size="large"></ion-icon>
-                                <div id="<%= post._id%>" class="upvote-count"> <%= post.upvotes %> </div>
+            <ul class="tune-list">
+                <% posts.forEach((post, index) => { %>
+                    <a class="tune-link" href="../tune/<%=post._id%>">
+                        <li class="tune-list-item">
+                            <div class="tune-list-title"><%= index+1 + '. ' %> <%= post.title %></div>
+                            <div class="list-funciton-box">
+                                <audio class="audio" src="<%='audio/'+post.filename%>"></audio>
+                                <ion-icon class="icon pause" name="play-outline" size="large"></ion-icon>
+                                <div class="upvote-box">
+                                    <ion-icon class="tune-list-icon"  name="thumbs-up-outline" data-id="<%= post._id%>" size="large"></ion-icon>
+                                    <div id="<%= post._id%>" class="upvote-count"> <%= post.upvotes %> </div>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </a>
-            <% }) %>
-        </ul>
-         </div>
+                        </li>
+                    </a>
+                <% }) %>
+            </ul>
+        </div>
 
 
             
