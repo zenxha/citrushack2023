@@ -5,6 +5,8 @@
     --bg-border: rgb(16, 20, 31);
     --text-clr: rgb(204, 204, 204);
 
+    --bouncy-clr: rgb(254, 190, 137);
+
     --bg-dropdown: rgb(255, 255, 255);
     --th-dropdown-hover: rgb(75, 75, 75);
     --btn-text: white;
@@ -32,6 +34,40 @@ body{
     min-height: 100svh;
     min-width: 100%;
     background-color: var(--bg-clr);
+}
+
+.bouncy-box-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bouncy-box{
+    min-height: 80vh;
+    min-height: 80svh;
+    width: 60vw;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, 0.3);
+    background-color: var(--bouncy-clr);
+    animation: bounce 2.5s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 .nav-bar{
@@ -107,7 +143,8 @@ ul li a {
     display: flex;
     flex-direction: column;
     font-size: 20px;
-    color: var(--text-clr);
+    color: var(--btn-text);
+
     gap: 10px;
     padding: 80px 200px;
     border: 8px dashed var(--btn-text);
