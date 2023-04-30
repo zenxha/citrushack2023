@@ -74,10 +74,22 @@ const multerConfig = {
     
 
 app.use('/audio', express.static(path.join(__dirname, 'src/audio-storage'))); // serve static audio files
+app.get('/tune/:id', async (req, res) => {
+  const postId = req.params.id;
+  try {
+    const post = await Post.findById(postId);
+    if (post) {
+      res.render('post', { post });
+    } else {
+      res.status(404).send('Post not found');
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+})
 app.get('/', (req, res) => {
   // res.sendFile(__dirname + '/src/views/index.html');
   res.render('index')
-  console.log('')
 })
 
 app.get('/top', async (req, res) => {
