@@ -93,7 +93,8 @@ function dropDown() {
 }
 
 // Handle form submission
-const submit = () => {
+const handleSubmit = () => {
+    console.log("going here")
     const fileInputs = document.querySelector('input[type="file"]')
     const textInput = document.querySelector('input[name="textData"]');
     const audio = fileInputs[0]
