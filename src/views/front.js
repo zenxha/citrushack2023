@@ -1,6 +1,8 @@
 //drag and drop
 const dragDetactor = document.querySelector('html');
 const submitForm = document.querySelector('.submit-form');
+const fileUploadBtn = document.querySelector('.file-upload-input');
+const audioPlayer = document.getElementById('audio');
 
 dragDetactor.addEventListener('dragover', (event) => {
     event.preventDefault();
@@ -18,11 +20,27 @@ dragDetactor.addEventListener('drop', async function(event) {
     const file = event.dataTransfer.files[0];
     handleFileUpload(file);
 
+    //gets the playable address of a local file been uploaded
     const reader = new FileReader();
     await reader.readAsDataURL(file);
     reader.onload = (event) => {
         const audioUrl = URL.createObjectURL(file);
-        console.log(audioUrl)
+        audioPlayer.src = audioUrl;
+        // console.log(audioUrl)
+    };
+});
+
+fileUploadBtn.addEventListener('change', async function(event) {
+    const file = event.target.files[0];
+    handleFileUpload(file);
+
+    //gets the playable address of a local file been uploaded
+    const reader = new FileReader();
+    await reader.readAsDataURL(file);
+    reader.onload = (event) => {
+        const audioUrl = URL.createObjectURL(file);
+        audioPlayer.src = audioUrl;
+        // console.log(audioUrl)
     };
 });
   
@@ -30,23 +48,6 @@ function handleFileUpload(file) {
     const fileNameElement = document.querySelector('.file-name');
     fileNameElement.textContent = file.name;
 }
-
-//accessing to audio file that is locally uploaded
-// const audioPlayer = document.getElementById('audio-player');
-
-// submitForm.addEventListener('change', () => {
-//   const file = submitForm.files[0];
-  
-//   const reader = new FileReader();
-//   reader.readAsDataURL(file);
-//   reader.onload = (event) => {
-//     const audioUrl = URL.createObjectURL(event.target.result);
-//     //audioPlayer.src = audioUrl;
-//   };
-
-//   console.log(audioUrl);
-// });
-
 
 //file upload by button
 const fileInput = document.getElementById("audio-upload");
