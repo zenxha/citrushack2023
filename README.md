@@ -1,5 +1,6 @@
 # 🍊 Citrus Hack 2023 🍊
 ## Tuneshare - A place to share ideas through sound
+<img src="https://files.catbox.moe/72gsxc.png" width=65%>
 
 ## Rest API
 - Documentation can be found [**here**](/docs/api.md)
