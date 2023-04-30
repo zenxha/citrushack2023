@@ -9,15 +9,17 @@
     
     <div class="container"> 
         <%- include('partials/nav') %>
-        <div>
+        <div class="cards-cover">
         <% posts.forEach(post => { %>
             <div class="audio-card">
-                <audio src="<%= '/audio/'+post.filename %>"></audio>
-              <p class="card-title"><%= post.title %></p>
-              <p class="card-text">Posted by <%= post.username %> on <%= post.timestamp %></p>
-              <ion-icon class="card-upvote" name="thumbs-up-outline"></ion-icon>
-              <p class="card-upvote-text"><%= post.upvotes %> upvotes</p>
-              
+                <audio id="audio" src="<%= '/audio/'+post.filename %>"></audio>
+                <%- include('partials/audioPlayer') %>
+                <h1><%= post.title %></h1>
+                <p>Posted by <%= post.username %> on <%= post.timestamp %></p>
+                <div>
+                    <ion-icon class="card-upvote" name="thumbs-up-outline"></ion-icon>
+                    <p class="card-upvote-text"><%= post.upvotes %> upvotes</p>
+                </div>
             </div>
         <% }) %>
          </div>
@@ -26,8 +28,6 @@
             
             
         <script src="front.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </div>
 </body>
 </html>

@@ -20,6 +20,12 @@ dragDetactor.addEventListener('drop', async function(event) {
     const file = event.dataTransfer.files[0];
     handleFileUpload(file);
 
+    //set playstate to pause (icon is declared in audioPlay.ejs)
+    icon.classList.remove("play");
+    icon.setAttribute('name', 'play-outline');
+    icon.classList.add("pause");
+    audio.pause();
+
     //gets the playable address of a local file been uploaded
     const reader = new FileReader();
     await reader.readAsDataURL(file);
@@ -29,11 +35,18 @@ dragDetactor.addEventListener('drop', async function(event) {
         // console.log(audioUrl)
         console.log(audioPlayer.src);
     };
+
 });
 
 fileUploadBtn.addEventListener('change', async function(event) {
     const file = event.target.files[0];
     handleFileUpload(file);
+
+    //set playstate to pause (icon is declared in audioPlay.ejs)
+    icon.classList.remove("play");
+    icon.setAttribute('name', 'play-outline');
+    icon.classList.add("pause");
+    audio.pause();
 
     //gets the playable address of a local file been uploaded
     const reader = new FileReader();
