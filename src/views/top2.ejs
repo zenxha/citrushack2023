@@ -12,10 +12,11 @@
 
         <% posts.forEach(post => { %>
             <div class="music_card">
+                <audio src="<%= '/audio/'+post.filename %>"></audio>
               <h2><%= post.title %></h2>
               <p>Posted by <%= post.username %> on <%= post.timestamp %></p>
               <p><%= post.upvotes %> upvotes</p>
-              <audio src="/audio/<%= post.filename %>"></audio>
+              
             </div>
         <% }) %>
             <!-- <%- include('partials/audioPlayer') %> -->
