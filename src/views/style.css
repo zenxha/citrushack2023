@@ -226,40 +226,30 @@ input[type="file"] {
 
     box-sizing: border-box;
 
-    -webkit-tap-highlight-color: transparent;
     background-color: transparent;
 
     outline: 0;
     border: 0;
     margin: 0;
-    border-radius: 0;
-    padding: 0;
+    padding: 0px;
     cursor: pointer;
 
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 
     vertical-align: middle;
-
-    -webkit-text-decoration: none;
+    
     text-decoration: none;
-
+    
     color: inherit;
     text-align: center;
-
-    -webkit-flex: 0 0 auto;
-    -ms-flex: 0 0 auto;
+    
     flex: 0 0 auto;
 
     font-size: 1.5rem;
-    padding: 8px;
     border-radius: 50%;
     overflow: visible;
     color: rgba(0, 0, 0, 0.54);
     transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    padding: 0px;
 }
 
 .Nav-btn-icon{
@@ -295,7 +285,7 @@ input[type="file"] {
 
 .Nav-dropdown-container{
     min-height: 180px;
-    min-width: 135px;
+    min-width: 140px;
     visibility: hidden;
     opacity: 1;
 
@@ -304,7 +294,7 @@ input[type="file"] {
     transform-origin: 112px -1.75px 0px;
 
     top: 110px;
-    right: 70px;
+    right: 80px;
     
     background-color: var(--bg-dropdown);
     color: rgba(255, 255, 255, 0.87);
