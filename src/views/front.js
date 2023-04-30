@@ -1,7 +1,7 @@
 //drag and drop
 const dragDetactor = document.querySelector('html');
 const submitForm = document.querySelector('.submit-form');
-const fileUploadBtn = document.querySelector('.file-upload-input');
+const fileUploadInput = document.querySelector('.file-upload-input');
 const audioPlayer = document.getElementById('audio');
 
 dragDetactor.addEventListener('dragover', (event) => {
@@ -32,13 +32,11 @@ dragDetactor.addEventListener('drop', async function(event) {
     reader.onload = (event) => {
         const audioUrl = URL.createObjectURL(file);
         audioPlayer.src = audioUrl;
-        // console.log(audioUrl)
-        console.log(audioPlayer.src);
     };
 
 });
 
-fileUploadBtn.addEventListener('change', async function(event) {
+fileUploadInput.addEventListener('change', async function(event) {
     const file = event.target.files[0];
     handleFileUpload(file);
 
@@ -54,7 +52,6 @@ fileUploadBtn.addEventListener('change', async function(event) {
     reader.onload = (event) => {
         const audioUrl = URL.createObjectURL(file);
         audioPlayer.src = audioUrl;
-        // console.log(audioUrl)
     };
 });
   
@@ -93,27 +90,158 @@ function dropDown() {
 }
 
 // Handle form submission
-const handleSubmit = () => {
-    console.log("going here")
-    const fileInputs = document.querySelector('input[type="file"]')
-    const textInput = document.querySelector('input[name="textData"]');
-    const audio = fileInputs[0]
-    const formData = new FormData();
-    formData.append('audio', audio);
-    formData.append('title', textInput);
+// const handleSubmit = () => {
+//     const fileInputs = document.querySelector('input[type="file"]')
+//     const textInput = document.querySelector('input[name="textData"]');
+//     const audio = fileInputs[0]
+//     const formData = new FormData();
+//     formData.append('audio', audio);
+//     formData.append('title', textInput);
 
-    fetch('/api/upload', {
-        method: 'POST',
-        body: formData
+//     fetch('/api/upload', {
+//         method: 'POST',
+//         body: formData
+//     })
+//     .then(response => response.text())
+//     .then(result => {
+//         console.log(result);
+//         // do shit
+//     })
+//     .catch(error => {
+//         console.error(error);
+//         // handle the error
+//     });
+
+// }
+
+
+//handles voice recording
+// collect DOMs
+const display = document.querySelector('.display')
+const controllerWrapper = document.querySelector('.controllers')
+
+const State = ['Initial', 'Record', 'Download']
+let stateIndex = 0
+let mediaRecorder, chunks = [], audioURL = '', newFile
+
+// mediaRecorder setup for audio
+if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+    console.log('mediaDevices supported..')
+
+    navigator.mediaDevices.getUserMedia({
+        audio: true
+    }).then(stream => {
+        mediaRecorder = new MediaRecorder(stream)
+
+        mediaRecorder.ondataavailable = (e) => {
+            chunks.push(e.data)
+        }
+        mediaRecorder.onstop = async () => {
+            const blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
+            const newFile = new File([blob], 'recorded_audio.ogg', { type: 'audio/ogg; codecs=opus' });
+            await Promise.resolve();
+
+            // Create a new DataTransfer object and add the new file to it
+  const dataTransfer = new DataTransfer();
+  dataTransfer.items.add(newFile);
+
+  // Replace the FileList object of the file input element with the new one
+  fileUploadInput.files = dataTransfer.files;
+          
+            chunks = []
+            audioURL = window.URL.createObjectURL(blob)
+            audioPlayer.src = audioURL
+          };
+    }).catch(error => {
+        console.log('Following error has occured : ',error)
     })
-    .then(response => response.text())
-    .then(result => {
-        console.log(result);
-        // do shit
-    })
-    .catch(error => {
-        console.error(error);
-        // handle the error
-    });
+}else{
+    stateIndex = ''
+    application(stateIndex)
+}
+
+const clearDisplay = () => {
+    display.textContent = ''
+}
+
+const clearControls = () => {
+    controllerWrapper.textContent = ''
+}
+
+const record = () => {
+    stateIndex = 1
+    mediaRecorder.start()
+    application(stateIndex)
+}
+
+const stopRecording = () => {
+    stateIndex = 2
+    mediaRecorder.stop()
+    application(stateIndex)
+}
+
+const downloadAudio = () => {
+    const downloadLink = document.createElement('a')
+    downloadLink.href = audioURL
+    downloadLink.setAttribute('download', 'audio')
+    downloadLink.click()
+}
+
+const addButton = (id, funString, text) => {
+    const btn = document.createElement('button')
+    btn.id = id
+    btn.setAttribute('onclick', funString)
+    btn.textContent = text
+    controllerWrapper.append(btn)
+}
+
+const addMessage = (text) => {
+    const msg = document.createElement('p')
+    msg.textContent = text
+    display.append(msg)
+}
+
+async function setAudio() {
+    //set playstate to pause (icon is declared in audioPlay.ejs)
+    icon.classList.remove("play");
+    icon.setAttribute('name', 'play-outline');
+    icon.classList.add("pause");
+    audio.pause();
+}
+
+const application = (index) => {
+    switch (State[index]) {
+        case 'Initial':
+            clearDisplay()
+            clearControls()
+
+            addButton('record', 'record()', 'Start Recording')
+            break;
+
+        case 'Record':
+            clearDisplay()
+            clearControls()
+
+            addMessage('Recording...')
+            addButton('stop', 'stopRecording()', 'Stop Recording')
+            break
+
+        case 'Download':
+            clearControls()
+            clearDisplay()
+
+            setAudio()
+            addButton('record', 'record()', 'Record Again')
+            break
+
+        default:
+            clearControls()
+            clearDisplay()
+
+            addMessage('Your browser does not support mediaDevices')
+            break;
+    }
 
 }
+
+application(stateIndex)
