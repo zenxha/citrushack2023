@@ -4,6 +4,7 @@ const ffmpeg = require('fluent-ffmpeg');
 const path = require('path')
 const fs = require('fs')
 const dbRouter = require('./src/db/db')
+const { Post } = require('./src/db/db')
 
 const app = express();
 // const upload = multer();
@@ -79,9 +80,16 @@ app.get('/', (req, res) => {
   console.log('')
 })
 
-app.get('/top', (req, res) => {
-  res.render('top')
+app.get('/top', async (req, res) => {
+  try {
+    const posts = await Post.find();
+    res.render('top2', {posts})
+  } catch(e) {
+    res.status(500).json({message: err.message})
+  }
 })
+
+
 
 
 
