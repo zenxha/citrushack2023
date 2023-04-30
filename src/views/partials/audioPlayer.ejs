@@ -1,37 +1,25 @@
 <audio id="audio" src="path/to/audio/file.mp3"></audio>
 <div id="audio-player-container">
-    <!-- swaps with pause icon -->
-    <!-- <ion-icon name="pause-outline"></ion-icon> -->
+    <!-- swaps with pause icon 'pause-outline / play-outline' -->
     <div id="state-icon">
-        <ion-icon class="pause" name="play-outline" size="large"></ion-icon>
+        <ion-icon class="icon pause" name="play-outline" size="large"></ion-icon>
     </div>
 </div>
 
 <script>
-    import lottieWeb from 'https://cdn.skypack.dev/lottie-web';
+    const icon = document.querySelector('.icon');
+    let state = 'play';
 
-const icon = document.querySelector('state-icon');
-let state = 'play';
+    icon.addEventListener('click', () => {
+        if(icon.classList.contains("pause")) {
+            icon.classList.remove("pause");
+            icon.setAttribute('name', 'pause-outline');
+            icon.classList.add("play");
 
-const animation = lottieWeb.loadAnimation({
-  container: icon,
-  path: 'https://maxst.icons8.com/vue-static/landings/animated-icons/icons/pause/pause.json',
-  renderer: 'svg',
-  loop: false,
-  autoplay: false,
-  name: "Demo Animation",
-});
-
-animation.goToAndStop(14, true);
-
-icon.addEventListener('click', () => {
-    if(state === 'play') {
-        animation.playSegments([14, 27], true);
-        state = 'pause';
-
-    } else {
-        animation.playSegments([0, 14], true);
-        state = 'play';
-    }
-});
+        } else {
+            icon.classList.remove("play");
+            icon.setAttribute('name', 'play-outline');
+            icon.classList.add("pause");
+        }
+    });
 </script>
