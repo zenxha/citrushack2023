@@ -82,8 +82,11 @@ ul li a {
 
 
 .nav-content > li:hover,
+.nav-content > li:focus,
 .nav-content > li:hover a,
-.Nav-btn-icon:hover {
+.nav-content > li:focus a,
+.Nav-btn-icon:hover,
+.Nav-btn-icon:focus {
     background-color: var(--btn-text-hover);
     color: var(--btn-text);
     scale: 1.2;
@@ -120,7 +123,6 @@ ul li a {
     justify-content: center;
 
     flex-direction: column;
-    margin-top: 20px;
 }
 
 .input-box{
@@ -179,7 +181,8 @@ input[type="file"] {
     cursor: pointer;
 }
 
-.custom-file-upload:hover {
+.custom-file-upload:hover,
+.custom-file-upload:focus {
     /* Style the custom "browse" button on hover */
     background-color: var(--btn-text-hover);
     color: var(--btn-text);

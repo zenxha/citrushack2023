@@ -1,6 +1,6 @@
 #audio-player-container {
     position: relative;
-    margin: 100px 5% auto 5%;
+    margin: 20px 5% auto 5%;
     width: 90%;
     max-width: 500px;
     height: 80px;
@@ -28,6 +28,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#state-icon:hover > .icon{
+    filter: invert(18%) sepia(4%) saturate(5384%) hue-rotate(184deg) brightness(97%) contrast(92%);
+    scale: 1.2;
+    transition: scale 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
 p {
