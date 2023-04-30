@@ -10,11 +10,18 @@
     let state = 'play';
 
     window.addEventListener('keydown', (evt) => {
+        //for input not happening
+        const tagName = evt.target.tagName.toLowerCase();
+        if (tagName === 'input' || tagName === 'textarea') {
+            return;
+        }
+        //pause and play with space
         if (evt.key === ' ') {
             evt.preventDefault();
             swtichPlayState();
         }
     });
+
     icon.addEventListener('click', swtichPlayState);
 
     function swtichPlayState() {
