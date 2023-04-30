@@ -1,8 +1,8 @@
-<audio id="audio" src="<%=fileName%>"></audio>
+<audio id="audio" src="<%='audio/'+filename%>"></audio>
 <div id="audio-player-container">
     <!-- swaps with pause icon 'pause-outline / play-outline' -->
     <button id="state-icon" tabindex="2">
-        <ion-icon class="icon pause" name="play-outline" size="large" data="<%=index%>"></ion-icon>
+        <ion-icon class="icon pause" name="play-outline" size="large"></ion-icon>
     </button>
 </div>
 
@@ -27,7 +27,6 @@
     icon.addEventListener('click', swtichPlayState);
 
     function swtichPlayState() {
-        console.log("hi");
         if(icon.classList.contains("pause")) {
             icon.classList.remove("pause");
             icon.setAttribute('name', 'pause-outline');
@@ -41,4 +40,5 @@
             audio.pause();
         }
     }
+
 </script>

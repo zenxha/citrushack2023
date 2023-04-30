@@ -12,8 +12,6 @@
         <div class="cards-cover">
         <% posts.forEach((post, index) => { %>
             <div class="audio-card">
-                <audio id="audio" src="<%= '/audio/'+post.filename %>"></audio>
-                <%- include('partials/audioPlayer', {index: index, filename: post.fileName}) %>
                 <h1><%= post.title %></h1>
                 <p>Posted by <%= post.username %> on <%= post.timestamp %></p>
                 <div>
@@ -28,6 +26,47 @@
             
             
         <script src="front.js"></script>
+        <script>
+            const audioPlayers = document.querySelectorAll('audio');
+            audioPlayers.forEach((audioPlayer) => {
+                console.log(audioPlayer);
+                console.log(audioPlayer.id);
+                const index = audioPlayer.id.split('-')[1];
+
+                const icon = document.querySelector('.icon[data="' + index + '"]');
+                const stateIcon = document.querySelector('.state-icon[data="' + index + '"]');
+                let state = 'play';
+
+                icon.addEventListener('click', swtichPlayState);
+                stateIcon.addEventListener('keydown', (evt) => {
+                    //for input not happening
+                    const tagName = evt.target.tagName.toLowerCase();
+                    if (tagName === 'input' || tagName === 'textarea') {
+                        return;
+                    }
+                    //pause and play with space
+                    if (evt.key === ' ') {
+                        evt.preventDefault();
+                        swtichPlayState();
+                    }
+            });
+
+            function swtichPlayState() {
+                if(icon.classList.contains("pause")) {
+                    icon.classList.remove("pause");
+                    icon.setAttribute('name', 'pause-outline');
+                    icon.classList.add("play");
+                    audioPlayer.play();
+
+                } else {
+                    icon.classList.remove("play");
+                    icon.setAttribute('name', 'play-outline');
+                    icon.classList.add("pause");
+                    audioPlayer.pause();
+                }
+            }
+        });
+        </script>
     </div>
 </body>
 </html>
