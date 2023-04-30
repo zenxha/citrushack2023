@@ -19,7 +19,7 @@
             </div>
             
             <audio id="audio" src="#"></audio>
-            <%- include('partials/audioPlayer') %>
+            <%- include('partials/audioPlayer', {index: 0}) %>
 
             <form action="/api/upload" method="POST" enctype="multipart/form-data">
                 <div class="detail-box">
