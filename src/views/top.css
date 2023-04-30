@@ -1,14 +1,86 @@
+:root{
+    --content-clr: #fff;
+    --card-bg: rgb(143, 190, 175);
+}
+
 .cards-cover{
     display: flex;
-    justify-content: center;
+    justify-content: top;
     align-items: center;
     flex-direction: column;
+
+    margin-top: 30px;
 
     min-height: 100svh;
     min-height: 100vh;
     gap: 20px;
+
+    overflow-y: scroll;
 }
 
+.tune-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 50px;
+}
+
+.tune-link{
+    text-decoration: none;
+}
+
+.tune-list-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 5px;
+
+    aspect-ratio: 3 / 1;
+    min-width: 300px;
+    border-radius: 10px;
+    background-color: var(--card-bg);
+}
+
+
+.tune-list-title{
+    font-size: 25px;
+    text-decoration: none;
+    color: var(--content-clr);
+}
+
+.list-funciton-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-width: 60%;
+}
+
+.upvote-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.tune-list-icon{
+    user-select: none;
+    text-decoration: none;
+    color: var(--content-clr);
+}
+
+.upvote-count {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--content-clr);
+}
+
+.icon {
+    color: var(--content-clr);
+}
 
 
 
@@ -17,7 +89,7 @@
     align-items: center;
     justify-content: center;
 
-    background-color: #fff;
+    background-color: var(--content-clr);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     max-width: 320px;
     border-radius: 20px;
@@ -39,7 +111,9 @@
 
 
 
-/* DONT TOUCH ABOVE THIS */
+/* 
+DONT TOUCH ABOVE THIS 
+
 .music_card{
     margin: 50px auto;
     background: #fff;
@@ -154,3 +228,4 @@
       font-size: 1.2em !important;
       cursor: pointer;
   }
+  */
