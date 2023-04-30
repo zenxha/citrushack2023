@@ -169,19 +169,22 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
         }
         mediaRecorder.onstop = async () => {
             const blob = new Blob(chunks, { type: 'audio/ogg; codecs=opus' });
-            const newFile = new File([blob], 'recorded_audio.ogg', { type: 'audio/ogg; codecs=opus' });
+            const newFile = new File([blob], `recorded_audio.ogg`, { type: 'audio/ogg; codecs=opus' });
             await Promise.resolve();
 
             // Create a new DataTransfer object and add the new file to it
-  const dataTransfer = new DataTransfer();
-  dataTransfer.items.add(newFile);
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(newFile);
 
-  // Replace the FileList object of the file input element with the new one
-  fileUploadInput.files = dataTransfer.files;
+            // Replace the FileList object of the file input element with the new one
+            fileUploadInput.files = dataTransfer.files;
           
             chunks = []
             audioURL = window.URL.createObjectURL(blob)
             audioPlayer.src = audioURL
+
+            const fileNameElement = document.querySelector('.file-name');
+            fileNameElement.textContent = newFile.name;
           };
     }).catch(error => {
         console.log('Following error has occured : ',error)
@@ -253,7 +256,7 @@ const application = (index) => {
             clearDisplay()
             clearControls()
 
-            addMessage('Recording...')
+            // addMessage('Recording...')
             addButton('stop', 'stopRecording()', 'Stop Recording')
             break
 
