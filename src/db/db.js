@@ -96,6 +96,19 @@ router.post('/upload', upload.single('audio'), async (req, res) => {
   }
 });
 
+router.delete('/posts/delete', async (req, res) => {
+  const postId = req.header('postId');
+  try {
+    const post = await Post.findByIdAndDelete(postId);
+    if (!post) {
+      return res.status(404).send({ message: 'Post not found' });
+    }
+    res.status(200).send({ message: 'Post deleted successfully' });
+  } catch (err) {
+    res.status(400).send({ message: err.message });
+  }
+});
+
 module.exports = router;
 module.exports.Post = Post
 module.exports.mongoose = mongoose;
