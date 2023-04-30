@@ -129,7 +129,7 @@ function dropDown() {
 //     formData.append('audio', audio);
 //     formData.append('title', textInput);
 
-//     fetch('/api/upload', {
+//     fetch('/api/v1/upload', {
 //         method: 'POST',
 //         body: formData
 //     })

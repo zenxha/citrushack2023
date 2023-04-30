@@ -33,7 +33,7 @@
     console.log("sending upvote")
       const postId = "<%= post._id %>";
       console.log(postId);
-      fetch(`/api/posts/upvote`, {
+      fetch(`/api/v1/posts/upvote`, {
         method: "PUT",
         headers: {
          

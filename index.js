@@ -16,7 +16,7 @@ app.set('view engine', 'ejs')
 app.set('views', './src/views')
 
 
-app.use('/api', dbRouter);
+app.use('/api/v1', dbRouter);
 
 const multerConfig = {
     
