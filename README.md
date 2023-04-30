@@ -2,7 +2,45 @@
 ## Tuneshare - A place to share ideas through sound
 
 ## Rest API
-- Documentation can be found [here](/docs/api.md)
+- Documentation can be found [**here**](/docs/api.md)
+
+## Getting started
+### Installing
+This assumes you already have a working node.js environment, if not, download [here](https://nodejs.org/en/download)
+
+Test that you have node.js installed with
+```sh
+npm -v
+```
+Clone the repository
+```sh
+git clone https://github.com/zenxha/citrushack2023.git
+cd citrushack2023
+```
+
+You will need to download MongoDB Community edition from their [**website**](https://www.mongodb.com/docs/manual/installation/)
+
+### Usage
+
+Install necessary dependencies with 
+```sh
+npm -i
+```
+
+Start MongoDB as a service
+- For Mac users, run
+```sh
+mongod --config /opt/homebrew/etc/mongod.conf --for
+```
+- Windows users will need to follow this [**guide**](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/)
+
+Now you should be good to run the server with the following script
+```sh
+npm run start
+```
+> NOTE: If your mongoDB server is not running, the server will crash after about 30 seconds.
+
+
 ## Contributors:
 
 - Komay Sugiyama
@@ -11,7 +49,9 @@
 - William(Dongyeon) Kim
 
 
-# Project Story
+
+
+# 📖 Project Story 📖
 
 ## Inspiration
 We all know how important audio is in our daily lives. Whether it's communicating ideas, expressing ourselves through music (singing or playing an instrument), or simply having fun with friends, audio has become an essential part of our social interactions. We wanted to create a platform that could bring all these ideas together and make it easy for people to share and discover new content. Our goal was to create a platform that is accessible to everyone and rewards quality content with upvotes.
