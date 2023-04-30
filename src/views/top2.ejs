@@ -13,7 +13,7 @@
         <% posts.forEach((post, index) => { %>
             <div class="audio-card">
                 <audio id="audio" src="<%= '/audio/'+post.filename %>"></audio>
-                <%- include('partials/audioPlayer', {index: index}) %>
+                <%- include('partials/audioPlayer', {index: index, filename: post.fileName}) %>
                 <h1><%= post.title %></h1>
                 <p>Posted by <%= post.username %> on <%= post.timestamp %></p>
                 <div>
