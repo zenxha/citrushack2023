@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <%- include('partials/head') %>
-    <title><%=post.title%></title>
+    <title><%='title: ' + post.title%></title>
 </head>
 <body>
      
@@ -10,8 +10,10 @@
         <%- include('partials/nav') %>
         <div class="bouncy-box-cover">
             <div class="bouncy-box">
-                <p class="title-label"><%=post.title%></p>
-                <audio src="../audio/<%=post.filename%>"></audio>
+                <h2 class="title-label"><%=post.title%></h2>
+
+                <!-- <audio src="../audio/<%=post.filename%>"></audio> -->
+                <%- include('partials/audioPlayer', {filename: post.filename}) %>
                 <a href="../audio/<%=post.filename%>" download="<%=post.originalname%>" >Download</a>
                 <p id="upvotes-count"><%= post.upvotes %> upvotes</p>
                 <button class="upload-btn" onclick="upvote()">Upvote</button>

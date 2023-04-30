@@ -46,6 +46,12 @@ fileUploadInput.addEventListener('change', async function(event) {
     icon.classList.add("pause");
     audio.pause();
 
+    if (file.size > maxSize) {
+        alert('File size must be less than 10MB.');
+        this.value = null; // clear the file input
+        return
+    }
+
     //gets the playable address of a local file been uploaded
     const reader = new FileReader();
     await reader.readAsDataURL(file);
