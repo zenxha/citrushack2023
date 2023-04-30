@@ -57,13 +57,25 @@ router.get('/allposts', async (req, res) => {
       }
 })
 
+router.put('/posts/upvote', async (req, res) => {
+    const postId = req.header('postId');
+    try {
+      const post = await Post.findById(postId);
+      post.upvotes++;
+      await post.save();
+      res.status(200).send(post);
+    } catch (err) {
+      res.status(400).send(err.message);
+    }
+  });
+
 router.post('/upload', upload.single('audio'), async (req, res) => {
     const audio = req.file; // File object
     const title = req.body.title; // Text data from form field
     console.log(title);
     console.log('Audio uploaded')
     console.log(audio);
-    console.log(audio.filename);
+    // console.log(audio.filename);
 
   const post = new Post({
     username: req.body.username,
