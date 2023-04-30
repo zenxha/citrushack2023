@@ -16,7 +16,7 @@
 + Response 200 (application/json)
 
 ## Upvote a post [PUT]
-- `/api/upvote`
+- `/api/allposts`
 - An endpoint to upvote the post specified by the ID
 
 Headers
