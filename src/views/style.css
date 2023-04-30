@@ -98,8 +98,13 @@ ul li {
 }
 
 /* FIXME:FIXME */
-.home-btn a {
-    color: black;
+.logo a {
+    text-decoration: none;
+    color: var(--btn-text);
+
+    font-size: 35px;
+    /* font-family: Luminari, fantasy; */
+    font-family: Chalkduster, fantasy;
 }
 
 ul li a {
