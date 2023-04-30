@@ -2,12 +2,18 @@
 
 
 
-## List all Posts [GET]
+## List all Tunes [GET]
 - `/api/allposts`
-- Lists in array format all posts stored on the database
+- Lists in array format all tunes stored on the database
 
 + Response 200 (application/json)
 
+## List all tunes in descending order (# of upvotes) [GET]
+- `/api/allposts`
+- Lists in array format all tunes stored on the database in descending order
+- Highest voted tunes appear at the top
+
++ Response 200 (application/json)
 
 ## Upvote a post [PUT]
 - `/api/upvote`
