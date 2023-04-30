@@ -1,14 +1,14 @@
 <div id="audio-player-container">
     <!-- swaps with pause icon 'pause-outline / play-outline' -->
     <div id="state-icon">
-        <ion-icon class="icon pause" name="play-outline" size="large"></ion-icon>
+        <ion-icon class="icon pause" name="play-outline" size="large" data="<%=index%>"></ion-icon>
     </div>
 </div>
 
 <script>
     const icon = document.querySelector('.icon');
+    const icons = document.querySelector('.icon');
     let state = 'play';
-
     icon.addEventListener('click', () => {
         if(icon.classList.contains("pause")) {
             icon.classList.remove("pause");
