@@ -3,8 +3,9 @@ const multer = require('multer');
 const ffmpeg = require('fluent-ffmpeg');
 const path = require('path')
 const fs = require('fs')
+
 const dbRouter = require('./src/db/db')
-const { Post } = require('./src/db/db')
+const { Post, mongoose } = require('./src/db/db')
 
 const app = express();
 // const upload = multer();
@@ -75,11 +76,12 @@ const multerConfig = {
 
 app.use('/audio', express.static(path.join(__dirname, 'src/audio-storage'))); // serve static audio files
 app.get('/tune/:id', async (req, res) => {
-  const postId = req.params.id;
   try {
-    const post = await Post.findById(postId);
+    const ObjectId = mongoose.Types.ObjectId;
+    const postID = new ObjectId(req.params.id);
+    const post = await Post.findById(postID)
     if (post) {
-      res.render('post', { post });
+      res.render('tune', { post });
     } else {
       res.status(404).send('Post not found');
     }
