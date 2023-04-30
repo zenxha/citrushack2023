@@ -15,12 +15,7 @@
                     <ion-icon name="cloud-upload-outline" size="large"></ion-icon>
                 </label>
                 <span class="file-name"></span>
-                <input class="file-upload-input" 
-                id="audio-upload"
-                draggable="true" 
-                type="file" 
-                accept="audio/*, " 
-                name="audio">
+
             </div>
 
             <%- include('partials/audioPlayer') %>
@@ -32,6 +27,12 @@
                         <input class="title-input" type="text" name="title" required>
                         <label class="title-label">title</label>
                     </div>
+                    <input class="file-upload-input" 
+                    id="audio-upload"
+                    draggable="true" 
+                    type="file" 
+                    accept="audio/*, " 
+                    name="audio">
                     
                     <!-- <button type="submit">Upload</button> We are using fetch instead-->  
                     <button class="upload-btn" onclick="submit">Upload</button>
