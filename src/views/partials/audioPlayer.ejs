@@ -1,14 +1,13 @@
 <audio id="audio" src="<%='audio/'+filename%>"></audio>
 <div id="audio-player-container">
     <!-- swaps with pause icon 'pause-outline / play-outline' -->
-    <button id="state-icon" tabindex="2">
+    <button id="state-icon" tabindex="2" type="button">
         <ion-icon class="icon pause" name="play-outline" size="large"></ion-icon>
     </button>
 </div>
 
 <script>
     const icon = document.querySelector('.icon');
-    const icons = document.querySelectorAll('.icon');
     let state = 'play';
 
     window.addEventListener('keydown', (evt) => {
