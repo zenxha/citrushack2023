@@ -4,6 +4,8 @@ const submitForm = document.querySelector('.submit-form');
 const fileUploadInput = document.querySelector('.file-upload-input');
 const audioPlayer = document.getElementById('audio');
 
+const MAXSIZE = 64000000
+
 dragDetactor.addEventListener('dragover', (event) => {
     event.preventDefault();
     submitForm.classList.add('dragover');
@@ -26,6 +28,13 @@ dragDetactor.addEventListener('drop', async function(event) {
     icon.classList.add("pause");
     audio.pause();
 
+    console.log(file.size + " : " + MAXSIZE)
+    if (file.size > MAXSIZE) {
+        alert('File size must be less than 64MB.');
+        this.value = null; // clear the file input
+        return;
+    }
+
     //gets the playable address of a local file been uploaded
     const reader = new FileReader();
     await reader.readAsDataURL(file);
@@ -46,10 +55,11 @@ fileUploadInput.addEventListener('change', async function(event) {
     icon.classList.add("pause");
     audio.pause();
 
-    if (file.size > maxSize) {
-        alert('File size must be less than 10MB.');
+    console.log(file.size + " : " + MAXSIZE)
+    if (file.size > MAXSIZE) {
+        alert('File size must be less than 64MB.');
         this.value = null; // clear the file input
-        return
+        return;
     }
 
     //gets the playable address of a local file been uploaded
@@ -71,7 +81,22 @@ const fileInput = document.getElementById("audio-upload");
 const fileNameSpan = document.querySelector(".file-name");
 const customUploadButton = document.querySelector(".custom-file-upload");
 
-fileInput.addEventListener("change", function () {
+fileInput.addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    handleFileUpload(file);
+
+    //set playstate to pause (icon is declared in audioPlay.ejs)
+    icon.classList.remove("play");
+    icon.setAttribute('name', 'play-outline');
+    icon.classList.add("pause");
+    audio.pause();
+
+    console.log(file.size + " : " + MAXSIZE)
+    if (file.size > MAXSIZE) {
+        alert('File size must be less than 64MB.');
+        this.value = null; // clear the file input
+        return;
+    }
     fileNameSpan.textContent = this.files[0].name;
 });
 
