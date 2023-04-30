@@ -89,7 +89,8 @@ router.post('/upload', upload.single('audio'), async (req, res) => {
 
   try {
     const newPost = await post.save();
-    res.redirect('/top');
+    res.redirect('/tune/'+newPost._id)
+    // res.redirect('/top');
     // res.status(201).json(newPost);
   } catch (err) {
     res.status(400).json({ message: err.message });
