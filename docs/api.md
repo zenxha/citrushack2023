@@ -13,6 +13,7 @@ Lists in array format all posts stored on the database
 ### List all Posts [PUT]
 
 An endpoint to upvote the post specified by the ID
+
 Headers
 ```json
 "postId": "{POST ID HERE}"
