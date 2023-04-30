@@ -18,8 +18,8 @@
                             <audio class="audio" src="<%='audio/'+post.filename%>"></audio>
                             <ion-icon class="icon pause" name="play-outline" size="large"></ion-icon>
                             <div class="upvote-box">
-                                <ion-icon class="tune-list-icon" id="<%= post._id %>" name="thumbs-up-outline" data-id="<%= post._id %>" size="large"></ion-icon>
-                                <div class="upvote-count"> <%= post.upvotes %> </div>
+                                <ion-icon class="tune-list-icon"  name="thumbs-up-outline" data-id="<%= post._id%>" size="large"></ion-icon>
+                                <div id="<%= post._id%>" class="upvote-count"> <%= post.upvotes %> </div>
                             </div>
                         </div>
                     </li>
@@ -56,10 +56,33 @@
                 });
                 upvote_icons[index].addEventListener('click', (evt) => {
                     evt.preventDefault();
-                    console.log(upvote_icons[index].id);
-                    console.log(upvote_icons[index].attributes["data-id"]);
+                    //
+                     console.log(upvote_icons[index].id);
+                    const postToUpvote = upvote_icons[index].getAttribute("data-id");
+                    console.log(postToUpvote)
+                    upvote(postToUpvote);
                 })
             });
+
+
+
+            const upvote = ((postId) => {
+                console.log("sending upvote to " + postId)
+                fetch(`/api/v1/posts/upvote`, {
+                    method: "PUT",
+                    headers: {
+                    
+                    "postId": postId
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                    const upvotes = data.upvotes;
+                    const upvoteEl = document.getElementById(postId);
+                    upvoteEl.textContent = `${upvotes}`;
+                    })
+                    .catch(error => console.error(error));
+                });
         </script>
     </div>
 </body>
