@@ -11,7 +11,13 @@
         <div class="bouncy-box-cover">
             <div class="bouncy-box">
                 <div class="form-cover">
+                    <!-- voice recording -->
+                    <div class="display"></div>
+                    <div class="controllers"></div>
+                    
+                    <!-- form for the file submission -->
                     <form action="/api/upload" method="POST" enctype="multipart/form-data">
+                        <!-- drag and drop -->
                         <div class="submit-form">
                             drag & drop or...
                             <label for="audio-upload" class="custom-file-upload" tabindex="1">
@@ -20,7 +26,7 @@
                             <span class="file-name"></span>
                         </div>
                         
-                        
+                        <!-- display, title, and upload button -->
                         <div class="detail-box">
                             <%- include('partials/audioPlayer', {filename: ''}) %>
                             
@@ -39,14 +45,12 @@
                             <button class="upload-btn" type="submit">Upload</button>
                         </div>
                     </form>
-            </div>
+                </div>
             </div>
         </div>
             
             
         <script src="front.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </div>
 </body>
 </html>
