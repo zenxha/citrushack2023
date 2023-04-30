@@ -5,6 +5,9 @@
     max-width: 500px;
     height: 80px;
     background: #fff;
+
+    display: flex;
+    align-items: center;
 }
 
 #audio-player-container::before {
@@ -18,6 +21,15 @@
     z-index: -1;
 }
 
+#state-icon {
+    position: absolute;
+    left: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 p {
     position: absolute;
     top: -18px;
@@ -26,18 +38,6 @@ p {
     margin: 0;
     font-size: 28px;
     background: #fff;
-}
-
-#play-icon {
-    margin: 20px 2.5% 20px 2.5%;
-
-    padding: 0;
-    border: 0;
-    background: inherit;
-    cursor: pointer;
-    outline: none;
-    width: 40px;
-    height: 40px;
 }
 
 path {

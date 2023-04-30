@@ -1,9 +1,9 @@
-# citrushack2023
-## A project made for citrus hack 2023
+# citrushack2023 🍊
+## Tuneshare - A place to share ideas through sound
 
-## Teammates:
+## Contributors:
 
 - Komay Sugiyama
-- Cole Miller
+- Cole Miller (Got banned on github LOL)
 - Scott Barrios
 - William(Dongyeon) Kim

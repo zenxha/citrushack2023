@@ -1,8 +1,37 @@
+<audio id="audio" src="path/to/audio/file.mp3"></audio>
 <div id="audio-player-container">
-    <p>Audio Player</p>
     <!-- swaps with pause icon -->
-    <button id="play-icon">
-        <ion-icon name="play-outline" size="large"></ion-icon>
-    </button>
+    <!-- <ion-icon name="pause-outline"></ion-icon> -->
+    <div id="state-icon">
+        <ion-icon class="pause" name="play-outline" size="large"></ion-icon>
+    </div>
 </div>
 
+<script>
+    import lottieWeb from 'https://cdn.skypack.dev/lottie-web';
+
+const icon = document.querySelector('state-icon');
+let state = 'play';
+
+const animation = lottieWeb.loadAnimation({
+  container: icon,
+  path: 'https://maxst.icons8.com/vue-static/landings/animated-icons/icons/pause/pause.json',
+  renderer: 'svg',
+  loop: false,
+  autoplay: false,
+  name: "Demo Animation",
+});
+
+animation.goToAndStop(14, true);
+
+icon.addEventListener('click', () => {
+    if(state === 'play') {
+        animation.playSegments([14, 27], true);
+        state = 'pause';
+
+    } else {
+        animation.playSegments([0, 14], true);
+        state = 'play';
+    }
+});
+</script>
