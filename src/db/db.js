@@ -75,7 +75,7 @@ router.post('/upload', upload.single('audio'), async (req, res) => {
     console.log(title);
     console.log('Audio uploaded')
     console.log(audio);
-    // console.log(audio.filename);
+    console.log(audio.filename);
 
   const post = new Post({
     username: req.body.username,
