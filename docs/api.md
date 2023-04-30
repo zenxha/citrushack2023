@@ -1,17 +1,16 @@
 # API Documentation
 
-## Post collection [/api/posts]
+
 
 ### List all Posts [GET]
-
+- /api/allposts
 Lists in array format all posts stored on the database
 
 + Response 200 (application/json)
 
-## Upvote a post [/api/upvote]
 
-### List all Posts [PUT]
-
+### Upvote a post [PUT]
+- /api/upvote
 An endpoint to upvote the post specified by the ID
 Headers
 ```json
