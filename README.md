@@ -45,7 +45,7 @@ npm run start
 
 - Komay Sugiyama
 - Cole Miller (Got banned on github LOL)
-- Scott "Barrios
+- Scott Barrios
 - William(Dongyeon) Kim
 
 
