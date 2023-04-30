@@ -7,33 +7,62 @@ let stateIndex = 0
 let mediaRecorder, chunks = [], audioURL = ''
 var audioName = ""
 
-// mediaRecorder setup for audio
-if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
-    console.log('mediaDevices supported..')
+const list = document.createElement('select')
+list.id = "selector"
+list.required = true
+navigator.mediaDevices.enumerateDevices().then(devices => 
+    {
+        for(let i = 0; i < devices.length; i++)
+            if(devices[i].kind.toString() == "audioinput"){
+                let option = document.createElement('option')
+                console.log(devices[i].deviceId)
+                option.value = devices[i].deviceId
+                option.text = devices[i].label
+                list.add(option)
+            }
+    }) 
 
-    navigator.mediaDevices.getUserMedia({
-        audio: true
-    }).then(stream => {
-        mediaRecorder = new MediaRecorder(stream)
-
-        mediaRecorder.ondataavailable = (e) => {
-            chunks.push(e.data)
-        }
-
-        mediaRecorder.onstop = () => {
-            const blob = new Blob(chunks, {'type': 'audio/ogg; codecs=opus'})
-            chunks = []
-            audioURL = window.URL.createObjectURL(blob)
-            document.querySelector('audio').src = audioURL
-
-        }
-    }).catch(error => {
-        console.log('Following error has occured : ',error)
-    })
-}else{
-    stateIndex = ''
-    application(stateIndex)
+function setMicrophone(id){
+    console.log("Option changed")
+    console.log("Option: " + id)
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+        console.log('mediaDevices supported..')
+        navigator.mediaDevices.getUserMedia({
+            audio: {
+                deviceId: id, 
+            },    
+        }).then(stream => {
+            mediaRecorder = new MediaRecorder(stream)
+    
+            mediaRecorder.ondataavailable = (e) => {
+                chunks.push(e.data)
+            }
+    
+            mediaRecorder.onstop = () => {
+                const blob = new Blob(chunks, {'type': 'audio/ogg; codecs=opus'})
+                chunks = []
+                audioURL = window.URL.createObjectURL(blob)
+                document.querySelector('audio').src = audioURL
+    
+            }
+        }).catch(error => {
+            console.log('Following error has occured : ',error)
+        })
+    }else{
+        stateIndex = ''
+        application(stateIndex)
+    }
 }
+
+list.value = "default"
+setMicrophone(list.value)
+
+list.addEventListener(
+    'change',
+    function(){setMicrophone(list.value)},
+    false
+)
+
 
 const clearDisplay = () => {
     display.textContent = ''
@@ -41,6 +70,11 @@ const clearDisplay = () => {
 
 const clearControls = () => {
     controllerWrapper.textContent = ''
+}
+
+const reset = () =>{
+    stateIndex = 0
+    application(stateIndex)
 }
 
 const record = () => {
@@ -82,6 +116,11 @@ const addButton = (id, funString, text) => {
     controllerWrapper.append(btn)
 }
 
+const addMicrophoneSelector = () => {
+    display.append(list)
+    list.value = "default"
+}
+
 const addMessage = (text) => {
     const msg = document.createElement('p')
     msg.textContent = text
@@ -110,7 +149,8 @@ const application = (index) => {
         case 'Initial':
             clearDisplay()
             clearControls()
-
+            
+            addMicrophoneSelector()
             addButton('record', 'record()', 'Record Audio')
             break;
 
@@ -127,7 +167,7 @@ const application = (index) => {
             clearDisplay()
 
             addAudio()
-            addButton('record', 'record()', 'Record Again')
+            addButton('reset', 'reset()', 'Record Again')
             addButton('finalize', 'finalize()', 'Finalize Upload')
             break
         case 'Upload':
@@ -141,6 +181,7 @@ const application = (index) => {
         case 'Uploaded':
             clearControls()
             clearDisplay()
+
             addMessage("Audio " + audioName + " has been uploaded")
             break
         default:
